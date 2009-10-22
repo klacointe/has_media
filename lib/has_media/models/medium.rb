@@ -45,7 +45,7 @@ class Medium < ActiveRecord::Base
     end
     raise 'wrong class type' if klass.nil?
     medium = klass.new
-    medium.filename = value.original_filename
+    medium.filename = value.original_filename.downcase
     medium.file = value
     medium.content_type = value.content_type
     medium.context = context
@@ -104,24 +104,24 @@ class Medium < ActiveRecord::Base
   end
   # system path for a medium
   def file_path(thumbnail = nil)
-    final_name = filename.gsub /\.[^.]+$/, file_extension
+    final_name = filename.gsub /\.[^.]+$/, '.' + file_extension
     final_name[-4,0] = "_#{thumbnail}" if thumbnail
     File.join(directory_path, final_name)
   end
 
   # http uri for a medium
   def file_uri(thumbnail = nil)
-    final_name = filename.gsub /\.[^.]+$/, file_extension
+    final_name = filename.gsub /\.[^.]+$/, '.' + file_extension
     final_name[-4,0] = "_#{thumbnail}" if thumbnail
     File.join(directory_uri, final_name)
   end
   # http uri of directory which stores media
   def directory_uri
-    HasMedia.directory_uri
+    File.join(HasMedia.directory_uri, self.type.underscore, self.id.to_s)
   end
 
   def file_exists?(thumbnail = nil)
-    File.exist?(File.join(Rails.root, 'public', uri(thumbnail)))
+    File.exist?(File.join(Rails.root, 'public', file_uri(thumbnail)))
   end
 
   def file_extension

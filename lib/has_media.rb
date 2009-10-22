@@ -125,3 +125,6 @@ module HasMedia
 
 end
 
+class ActiveRecord::Base
+  include HasMedia
+end
