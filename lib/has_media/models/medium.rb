@@ -16,6 +16,11 @@ class Medium < ActiveRecord::Base
   ENCODE_FAILURE   = 3
   ENCODE_NOT_READY = 4
 
+  EXTENSIONS = {
+    :image => 'png',
+    :audio => 'mp3',
+  }
+
   # Allowed MIME types for upload
   # need custom configuration
   @@mime_types = {
@@ -42,6 +47,7 @@ class Medium < ActiveRecord::Base
     medium = klass.new
     medium.filename = value.original_filename
     medium.file = value
+    medium.content_type = value.content_type
     medium.context = context
     medium.encode_status = ENCODE_WAIT
     medium.save
@@ -87,51 +93,54 @@ class Medium < ActiveRecord::Base
     File.unlink(file) if File.exists? file
   end
 
-  ##
-  # Public path for this media
-  # FIX ME : rename to path or something else... seems to be the http path
-  def public_filename(thumbnail = nil)
-    final_name = self.filename.gsub /\.[^.]+$/, '.png'
-    final_name[-4,0] = "_#{thumbnail}" if thumbnail
-    File.join(public_path, final_name)
-  end
-
-  ##
   # Public path to the file originally uploaded.
-  #
-  def original_filename
-    File.join(public_path, self.filename)
+  def original_file_path
+    File.join(directory_path, self.filename)
   end
 
-  ##
-  # Returns the path part of the public URI of a media
-  #
-  def public_path
+  # System directory to store files
+  def directory_path
     self.file.store_dir
+  end
+  # system path for a medium
+  def file_path(thumbnail = nil)
+    final_name = filename.gsub /\.[^.]+$/, file_extension
+    final_name[-4,0] = "_#{thumbnail}" if thumbnail
+    File.join(directory_path, final_name)
+  end
+
+  # http uri for a medium
+  def file_uri(thumbnail = nil)
+    final_name = filename.gsub /\.[^.]+$/, file_extension
+    final_name[-4,0] = "_#{thumbnail}" if thumbnail
+    File.join(directory_uri, final_name)
+  end
+  # http uri of directory which stores media
+  def directory_uri
+    HasMedia.directory_uri
   end
 
   def file_exists?(thumbnail = nil)
-    File.exist?(File.join(Rails.root, 'public', public_filename(thumbnail)))
+    File.exist?(File.join(Rails.root, 'public', uri(thumbnail)))
+  end
+
+  def file_extension
+    EXTENSIONS[type.downcase.to_sym]
   end
 
 private
 
-  def set_current_user
-    self.user = self.class.current_user
-  end
-
   ##
   # Set encode_status value to notify the encoder of a new file
-  #
   def set_default_encoding_status
     self.encode_status = ENCODE_NOT_READY if filename_changed?
   end
 
   ##
   # Unlink the folder containing the files
-  #
+  # TODO : remove all files, not only the original one
   def remove_file_from_fs
     require 'fileutils'
-    FileUtils.rm_rf(self.public_filename)
+    FileUtils.rm_rf(self.original_file_path)
   end
 end

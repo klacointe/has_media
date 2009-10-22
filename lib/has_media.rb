@@ -2,12 +2,12 @@ require 'rubygems'
 require 'activerecord'
 require 'carrierwave'
 
-require 'lib/has_media/uploaders/medium_uploader'
-Dir.glob('lib/has_media/uploaders/*.rb').each do |uploader|
+require File.dirname(__FILE__) + '/has_media/uploaders/medium_uploader'
+Dir.glob(File.dirname(__FILE__) + '/has_media/uploaders/*.rb').each do |uploader|
   require uploader
 end
-require 'lib/has_media/models/medium'
-Dir.glob('lib/has_media/models/*.rb').each do |model|
+require File.dirname(__FILE__) + '/has_media/models/medium'
+Dir.glob(File.dirname(__FILE__) + '/has_media/models/*.rb').each do |model|
   require model
 end
 
@@ -15,11 +15,28 @@ module HasMedia
 
   VERSION = "0.0.1"
 
+  @@store_dir = '/tmp'
+  @@directory_uri = ''
+
+  def self.directory_path=(value)
+    @@store_dir = value
+  end
+  def self.directory_path
+    @@store_dir
+  end
+  def self.directory_uri=(value)
+    @@directory_uri = value
+  end
+  def self.directory_uri
+    @@directory_uri
+  end
+
   def self.included(mod)
     mod.extend ClassMethods
   end
 
   module ClassMethods
+
     def has_one_medium(context, options = {})
       set_relations(context, :has_one)
       set_media_links_relation

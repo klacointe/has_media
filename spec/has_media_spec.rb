@@ -10,6 +10,8 @@ describe "HasMedia" do
       has_one_medium  :audio, :only => :audio
       has_many_media  :audios, :only => :audio
     end
+    HasMedia.directory_path = 'tmp'
+    HasMedia.directory_uri = '/media'
   end
 
   before :each do
@@ -84,7 +86,7 @@ describe "HasMedia" do
   it "should destroy files from fs when Related Model is destroyed" do
     @medium.image = @image
     @medium.save!
-    path = @medium.image.original_filename
+    path = @medium.image.original_file_path
     File.exist?(path).should be_true
     @medium.destroy
     File.exist?(path).should be_false

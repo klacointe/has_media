@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'spec'
 require 'spec/autorun'
-
+require 'rubygems'
 require 'action_controller'
 require 'action_controller/test_process'
 require 'has_media'
