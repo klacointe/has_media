@@ -5,12 +5,14 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "has_media"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Media Managment Library for ActiveRecord and Carrierwave}
+    gem.description = %Q{Media Managment Library for ActiveRecord and Carrierwave}
     gem.email = "kevinlacointe@gmail.com"
-    gem.homepage = "http://github.com/klacionte/has_media"
-    gem.authors = ["klacointe"]
+    gem.homepage = "http://github.com/klacointe/has_media"
+    gem.authors = ["klacointe", "spk"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_dependency('carrierwave', '=0.3.5.2')
+    gem.add_dependency('activerecord', '>=2.3.4')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
