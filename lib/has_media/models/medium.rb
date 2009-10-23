@@ -103,6 +103,11 @@ class Medium < ActiveRecord::Base
     File.join(directory_path, self.filename)
   end
 
+  # Http uri to the originally file
+  def original_file_uri
+    File.join(directory_uri, self.filename)
+  end
+
   # System directory to store files
   def directory_path
     self.file.store_dir
