@@ -15,6 +15,7 @@ class Medium < ActiveRecord::Base
   ENCODE_SUCCESS   = 2
   ENCODE_FAILURE   = 3
   ENCODE_NOT_READY = 4
+  NO_ENCODING      = 5
 
   EXTENSIONS = {
     :image => 'png',
@@ -35,11 +36,11 @@ class Medium < ActiveRecord::Base
   after_initialize  :set_default_encoding_status
 
 
-  named_scope :with_context, lambda {|context| 
-    { :conditions => { :context => context.to_s} } 
+  named_scope :with_context, lambda {|context|
+    { :conditions => { :context => context.to_s} }
   }
 
-  def self.new_from_value(value, context)
+  def self.new_from_value(value, context, encode)
     klass = [Image, Audio].find do |k|
       k.handle_content_type?(value.content_type)
     end
@@ -49,7 +50,11 @@ class Medium < ActiveRecord::Base
     medium.file = value
     medium.content_type = value.content_type
     medium.context = context
-    medium.encode_status = ENCODE_WAIT
+    if encode == "false"
+      medium.encode_status = NO_ENCODING
+    else
+      medium.encode_status = ENCODE_WAIT
+    end
     medium.save
     medium
   end

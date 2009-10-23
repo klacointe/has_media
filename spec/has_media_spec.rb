@@ -9,6 +9,7 @@ describe "HasMedia" do
       has_many_media  :images, :only => :image
       has_one_medium  :audio, :only => :audio
       has_many_media  :audios, :only => :audio
+      has_one_medium  :image_no_encode, :only => :image, :encode => false
     end
     HasMedia.directory_path = 'tmp'
     HasMedia.directory_uri = '/media'
@@ -115,6 +116,15 @@ describe "HasMedia" do
     @medium.images = [@image, @image_bis]
     @medium.save!
     @medium.media.size.should == 2
+  end
+
+  it "should have the right encode status" do
+    @medium.image_no_encode = @image
+    @medium.save!
+    @medium.image_no_encode.encode_status.should == Medium::NO_ENCODING
+    @medium.image = @image_bis
+    @medium.save!
+    @medium.image.encode_status.should == Medium::ENCODE_WAIT
   end
 
 end

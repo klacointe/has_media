@@ -58,7 +58,7 @@ module HasMedia
       @contexts[relation] ||= []
       @media_relation_set ||= []
       if @contexts[relation].include?(context)
-        raise Exception.new("You should NOT use same context identifier for several has_one or has_many relation to media") 
+        raise Exception.new("You should NOT use same context identifier for several has_one or has_many relation to media")
       end
       @contexts[relation] << context
       return if @media_relation_set.include? self
@@ -86,7 +86,7 @@ module HasMedia
       module_eval <<-"end;", __FILE__, __LINE__
         def #{context}=(value)
           return if value.blank?
-          medium = Medium.new_from_value(value, "#{context}")
+          medium = Medium.new_from_value(value, "#{context}", "#{options[:encode]}")
           #{check_conditions}
           @old_media ||= []
           @old_media += media.with_context("#{context}")
@@ -108,7 +108,7 @@ module HasMedia
           return if values.blank?
           Array(values).each do |value|
             next if value.nil?
-            medium = Medium.new_from_value(value, "#{context}")
+            medium = Medium.new_from_value(value, "#{context}", "#{options[:encode]}")
             #{check_conditions}
             media << medium
           end
