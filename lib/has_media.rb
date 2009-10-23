@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'activerecord'
+require 'activesupport'
 require 'carrierwave'
 
 require File.dirname(__FILE__) + '/has_media/uploaders/medium_uploader'

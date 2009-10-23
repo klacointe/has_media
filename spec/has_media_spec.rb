@@ -127,4 +127,13 @@ describe "HasMedia" do
     @medium.image.encode_status.should == Medium::ENCODE_WAIT
   end
 
+  it "should have an original uri" do
+    @medium.image = @image
+    @medium.save!
+    @medium.image.original_file_uri.should == File.join(HasMedia.directory_uri,
+                                                        ActiveSupport::Inflector.underscore(@medium.image.type),
+                                                        @medium.image.id.to_s,
+                                                        @medium.image.filename)
+  end
+
 end

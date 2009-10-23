@@ -127,7 +127,9 @@ class Medium < ActiveRecord::Base
   end
   # http uri of directory which stores media
   def directory_uri
-    File.join(HasMedia.directory_uri, self.type.underscore, self.id.to_s)
+    File.join(HasMedia.directory_uri,
+              ActiveSupport::Inflector.underscore(self.type),
+              self.id.to_s)
   end
 
   def file_exists?(thumbnail = nil)
