@@ -20,15 +20,18 @@ class Medium < ActiveRecord::Base
   EXTENSIONS = {
     :image => 'png',
     :audio => 'mp3',
+    :pdf   => 'pdf',
   }
 
   # Allowed MIME types for upload
   # need custom configuration
+  # TODO: add errors if not type of file
   @@mime_types = {
       :video => ['video/mpeg', 'video/mp4', 'video/quicktime', 'video/x-ms-wmv', 'video/x-flv'],
       :image => ['image/gif', 'image/jpeg', 'image/png', 'image/tiff', 'image/pjpeg'],
       :audio => ['audio/mpeg', 'audio/x-ms-wma', 'audio/x-wav'],
-      :flash => ['application/x-shockwave-flash']
+      :flash => ['application/x-shockwave-flash'],
+      :pdf   => ['application/pdf'],
   }
 
   # TODO : check that carrierwave destroy files on after detroy hook
@@ -41,7 +44,7 @@ class Medium < ActiveRecord::Base
   }
 
   def self.new_from_value(value, context, encode)
-    klass = [Image, Audio].find do |k|
+    klass = [Image, Audio, Pdf].find do |k|
       k.handle_content_type?(value.content_type)
     end
     raise 'wrong class type' if klass.nil?
@@ -80,18 +83,8 @@ class Medium < ActiveRecord::Base
     encode_status == ENCODE_FAILURE
   end
 
-  # Used in Image to not validate file-size on a non-uploaded Medium
-  def is_file
-    self.url
-  end
-
-  # I can haz URL?
-  def has_url?
-    url.present?
-  end
-
   ##
-  # Delete media file(s) from disk: FIXME should work for all file types
+  # Delete media file(s) from disk
   #
   def unlink_files
     file = self.full_filename
