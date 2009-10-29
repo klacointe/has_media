@@ -10,6 +10,7 @@ describe "HasMedia" do
       has_one_medium  :audio, :only => :audio
       has_many_media  :audios, :only => :audio
       has_one_medium  :image_no_encode, :only => :image, :encode => false
+      has_one_medium  :pdf, :encode => false
     end
     HasMedia.directory_path = 'tmp'
     HasMedia.directory_uri = '/media'
@@ -20,6 +21,7 @@ describe "HasMedia" do
     @image = ActionController::TestUploadedFile.new('spec/fixtures/media/image.jpg', 'image/jpeg')
     @audio = ActionController::TestUploadedFile.new('spec/fixtures/media/audio.wav', 'audio/wav')
     @image_bis = ActionController::TestUploadedFile.new('spec/fixtures/media/image_bis.jpg', 'image/jpeg')
+    @pdf = ActionController::TestUploadedFile.new('spec/fixtures/media/lc_pdf_overview_format.pdf', 'application/pdf')
   end
 
   it 'should not have 2 has_one_medium with same context' do
@@ -37,6 +39,7 @@ describe "HasMedia" do
     @medium.methods.should include("images")
     @medium.methods.should include("audio")
     @medium.methods.should include("audios")
+    @medium.methods.should include("pdf")
   end
 
   it "should define setters" do
@@ -44,6 +47,7 @@ describe "HasMedia" do
     @medium.methods.should include("images=")
     @medium.methods.should include("audio=")
     @medium.methods.should include("audios=")
+    @medium.methods.should include("pdf=")
   end
 
   it "should associate image to mediated object" do
@@ -58,6 +62,13 @@ describe "HasMedia" do
     @medium.save!
     @medium.audio.should_not be_nil
     @medium.audio.class.should == Audio
+  end
+
+  it "should associate pdf to mediated object" do
+    @medium.pdf = @pdf
+    @medium.save!
+    @medium.pdf.should_not be_nil
+    @medium.pdf.class.should == Pdf
   end
 
   it "should add both audio and image " do
