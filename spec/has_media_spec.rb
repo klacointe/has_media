@@ -21,7 +21,7 @@ describe "HasMedia" do
     @image = ActionController::TestUploadedFile.new('spec/fixtures/media/image.jpg', 'image/jpeg')
     @audio = ActionController::TestUploadedFile.new('spec/fixtures/media/audio.wav', 'audio/wav')
     @image_bis = ActionController::TestUploadedFile.new('spec/fixtures/media/image_bis.jpg', 'image/jpeg')
-    @pdf = ActionController::TestUploadedFile.new('spec/fixtures/media/lc_pdf_overview_format.pdf', 'application/pdf')
+    @pdf = ActionController::TestUploadedFile.new('spec/fixtures/media/Conversational_Capital _Explained.pdf', 'application/pdf')
   end
 
   it 'should not have 2 has_one_medium with same context' do
@@ -145,6 +145,13 @@ describe "HasMedia" do
                                                         ActiveSupport::Inflector.underscore(@medium.image.type),
                                                         @medium.image.id.to_s,
                                                         @medium.image.filename)
+  end
+
+  it "pdf should exist" do
+    @medium.pdf = @pdf
+    @medium.save!
+    path = @medium.pdf.file_path
+    File.exist?(path).should be_true
   end
 
 end

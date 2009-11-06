@@ -43,13 +43,22 @@ class Medium < ActiveRecord::Base
     { :conditions => { :context => context.to_s} }
   }
 
+  def self.sanitize(name)
+    name = name.gsub("\\", "/") # work-around for IE
+    name = File.basename(name)
+    name = name.gsub(/[^a-zA-Z0-9\.\-\+_]/,"_")
+    name = "_#{name}" if name =~ /\A\.+\z/
+      name = "unnamed" if name.size == 0
+    return name.downcase
+  end
+
   def self.new_from_value(value, context, encode)
     klass = [Image, Audio, Pdf].find do |k|
       k.handle_content_type?(value.content_type)
     end
     raise 'wrong class type' if klass.nil?
     medium = klass.new
-    medium.filename = value.original_filename.downcase
+    medium.filename = self.sanitize(value.original_filename)
     medium.file = value
     medium.content_type = value.content_type
     medium.context = context
