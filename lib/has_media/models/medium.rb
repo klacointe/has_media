@@ -54,7 +54,9 @@ class Medium < ActiveRecord::Base
 
   def self.new_from_value(value, context, encode)
     klass = [Image, Audio, Pdf].find do |k|
-      k.handle_content_type?(value.content_type)
+      if k.respond_to?(:handle_content_type?)
+        k.handle_content_type?(value.content_type)
+      end
     end
     raise 'wrong class type' if klass.nil?
     medium = klass.new
