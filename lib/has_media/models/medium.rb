@@ -27,11 +27,11 @@ class Medium < ActiveRecord::Base
   # need custom configuration
   # TODO: add errors if not type of file
   @@mime_types = {
-      :video => ['video/mpeg', 'video/mp4', 'video/quicktime', 'video/x-ms-wmv', 'video/x-flv'],
-      :image => ['image/gif', 'image/jpeg', 'image/png', 'image/tiff', 'image/pjpeg'],
-      :audio => ['audio/mpeg', 'audio/x-ms-wma', 'audio/x-wav'],
-      :flash => ['application/x-shockwave-flash'],
-      :pdf   => ['application/pdf'],
+    :video => ['video/mpeg', 'video/mp4', 'video/quicktime', 'video/x-ms-wmv', 'video/x-flv', 'video/x-msvideo'],
+    :image => HasMedia.images_content_types,
+    :audio => ['audio/mpeg', 'audio/x-ms-wma', 'audio/x-wav'],
+    :flash => ['application/x-shockwave-flash'],
+    :pdf   => ['application/pdf'],
   }
 
   # TODO : check that carrierwave destroy files on after detroy hook
@@ -48,7 +48,7 @@ class Medium < ActiveRecord::Base
     name = File.basename(name)
     name = name.gsub(/[^a-zA-Z0-9\.\-\+_]/,"_")
     name = "_#{name}" if name =~ /\A\.+\z/
-      name = "unnamed" if name.size == 0
+    name = "unnamed" if name.size == 0
     return name.downcase
   end
 

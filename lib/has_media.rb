@@ -3,21 +3,43 @@ require 'activerecord'
 require 'activesupport'
 require 'carrierwave'
 
-require File.dirname(__FILE__) + '/has_media/uploaders/medium_uploader'
-Dir.glob(File.dirname(__FILE__) + '/has_media/uploaders/*.rb').each do |uploader|
-  require uploader
-end
-require File.dirname(__FILE__) + '/has_media/models/medium'
-Dir.glob(File.dirname(__FILE__) + '/has_media/models/*.rb').each do |model|
-  require model
-end
-
 module HasMedia
 
   VERSION = "0.0.1"
 
   @@store_dir = '/tmp'
   @@directory_uri = ''
+  @@images_content_types = [
+    'image/jpeg',
+    'image/pjpeg',
+    'image/jpg',
+    'image/gif',
+    'image/png',
+    'image/x-png',
+    'image/jpg',
+    'image/x-ms-bmp',
+    'image/bmp',
+    'image/x-bmp',
+    'image/x-bitmap',
+    'image/x-xbitmap',
+    'image/x-win-bitmap',
+    'image/x-windows-bmp',
+    'image/ms-bmp',
+    'application/bmp',
+    'application/x-bmp',
+    'application/x-win-bitmap',
+    'application/preview',
+    'image/jp_',
+    'application/jpg',
+    'application/x-jpg',
+    'image/pipeg',
+    'image/vnd.swiftview-jpeg',
+    'image/x-xbitmap',
+    'application/png',
+    'application/x-png',
+    'image/gi_',
+    'image/x-citrix-pjpeg'
+  ]
 
   def self.directory_path=(value)
     @@store_dir = value
@@ -30,6 +52,10 @@ module HasMedia
   end
   def self.directory_uri
     @@directory_uri
+  end
+  # taken from http://github.com/technoweenie/attachment_fu/blob/master/lib/technoweenie/attachment_fu.rb
+  def self.images_content_types
+    @@images_content_types
   end
 
   def self.included(mod)
@@ -128,4 +154,14 @@ end
 
 class ActiveRecord::Base
   include HasMedia
+end
+
+require File.dirname(__FILE__) + '/has_media/uploaders/medium_uploader'
+Dir.glob(File.dirname(__FILE__) + '/has_media/uploaders/*.rb').each do |uploader|
+  require uploader
+end
+
+require File.dirname(__FILE__) + '/has_media/models/medium'
+Dir.glob(File.dirname(__FILE__) + '/has_media/models/*.rb').each do |model|
+  require model
 end
