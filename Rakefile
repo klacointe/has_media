@@ -10,7 +10,7 @@ begin
     gem.homepage = "http://github.com/klacointe/has_media"
     gem.authors = ["klacointe", "spk"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_dependency('carrierwave', '=0.4.1')
+    gem.add_dependency('carrierwave', '>=0.4.2')
     gem.add_dependency('activerecord', '>=2.3.4')
     gem.add_dependency('activesupport', '>=2.3.4')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings

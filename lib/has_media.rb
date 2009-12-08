@@ -1,6 +1,6 @@
 require 'rubygems'
-require 'activerecord'
-require 'activesupport'
+require 'active_record'
+require 'active_support'
 require 'carrierwave'
 
 module HasMedia
