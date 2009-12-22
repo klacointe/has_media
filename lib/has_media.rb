@@ -9,6 +9,7 @@ module HasMedia
 
   @@store_dir = '/tmp'
   @@directory_uri = ''
+  @@errors_messages = {:type_error => 'Wrong type'}
   @@images_content_types = [
     'image/jpeg',
     'image/pjpeg',
@@ -57,6 +58,12 @@ module HasMedia
   def self.images_content_types
     @@images_content_types
   end
+  def self.errors_messages
+    @@errors_messages
+  end
+  def self.errors_messages=(h)
+    @@errors_messages.merge(h)
+  end
 
   def self.included(mod)
     mod.extend ClassMethods
@@ -103,8 +110,8 @@ module HasMedia
     end
 
     def create_one_accessors(context, options)
-      check_conditions = ''
-      check_conditions << "return unless medium.is_a? #{options[:only].to_s.capitalize}" if options.has_key? :only
+      #check_conditions = ''
+      #check_conditions << "return unless medium.is_a? #{options[:only].to_s.capitalize}" if options.has_key? :only
 
       define_method(context) do
         media.with_context(context.to_sym).first
@@ -113,18 +120,19 @@ module HasMedia
       module_eval <<-"end;", __FILE__, __LINE__
         def #{context}=(value)
           return if value.blank?
-          medium = Medium.new_from_value(value, "#{context}", "#{options[:encode]}")
-          #{check_conditions}
-          @old_media ||= []
-          @old_media += media.with_context("#{context}")
-          media << medium
+          medium = Medium.new_from_value(self, value, "#{context}", "#{options[:encode]}", "#{options[:only]}")
+          if medium
+            @old_media ||= []
+            @old_media += media.with_context("#{context}")
+            media << medium
+          end
         end
       end;
     end
 
     def create_many_accessors(context, options)
-      check_conditions = ''
-      check_conditions << "return unless medium.is_a? #{options[:only].to_s.capitalize}" if options.has_key? :only
+      #check_conditions = ''
+      #check_conditions << "return unless medium.is_a? #{options[:only].to_s.capitalize}" if options.has_key? :only
 
       define_method(context.to_s.pluralize) do
         media.with_context(context.to_sym).uniq
@@ -135,9 +143,8 @@ module HasMedia
           return if values.blank?
           Array(values).each do |value|
             next if value.nil?
-            medium = Medium.new_from_value(value, "#{context}", "#{options[:encode]}")
-            #{check_conditions}
-            media << medium
+            medium = Medium.new_from_value(self, value, "#{context}", "#{options[:encode]}", "#{options[:only]}")
+            media << medium if medium
           end
         end
       end;

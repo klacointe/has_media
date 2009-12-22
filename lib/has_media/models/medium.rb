@@ -52,13 +52,26 @@ class Medium < ActiveRecord::Base
     return name.downcase
   end
 
-  def self.new_from_value(value, context, encode)
-    klass = [Image, Audio, Pdf].find do |k|
-      if k.respond_to?(:handle_content_type?)
-        k.handle_content_type?(value.content_type)
+  def self.new_from_value(object, value, context, encode, only)
+    # FIXME
+    if only != ''
+      klass = Kernel.const_get(only.capitalize)
+      if klass && klass.respond_to?(:handle_content_type?) && klass.handle_content_type?(value.content_type)
+      else
+        klass = nil
+      end
+    else
+      klass = [Image, Audio, Pdf].find do |k|
+        if k.respond_to?(:handle_content_type?)
+          k.handle_content_type?(value.content_type)
+        end
       end
     end
-    raise 'wrong class type' if klass.nil?
+    if klass.nil?
+      object.errors.add(context.to_sym, HasMedia.errors_messages[:type_error])
+      p object.errors.full_messages
+      return
+    end
     medium = klass.new
     medium.filename = self.sanitize(value.original_filename)
     medium.file = value
