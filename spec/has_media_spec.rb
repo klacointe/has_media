@@ -156,11 +156,11 @@ describe "HasMedia" do
 
   it "should add errors on parent model if type is not allowed" do
     @image = ActionController::TestUploadedFile.new('spec/fixtures/media/image.jpg', 'image/jpeg')
-    @medium = MediumRelatedTest.new
     @medium.audio = @image
-    p @medium.valid?
-    p @medium.errors.full_messages
+    @medium.valid?
     @medium.should_not be_valid
+    @medium.save.should be_false
+    @medium.errors.full_messages.include?(HasMedia.errors_messages[:type_error])
   end
 
 end

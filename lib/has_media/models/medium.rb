@@ -53,23 +53,18 @@ class Medium < ActiveRecord::Base
   end
 
   def self.new_from_value(object, value, context, encode, only)
-    # FIXME
-    if only != ''
-      klass = Kernel.const_get(only.capitalize)
-      if klass && klass.respond_to?(:handle_content_type?) && klass.handle_content_type?(value.content_type)
-      else
-        klass = nil
-      end
-    else
-      klass = [Image, Audio, Pdf].find do |k|
-        if k.respond_to?(:handle_content_type?)
-          k.handle_content_type?(value.content_type)
-        end
+    only ||= ""
+    medium_types = [Image, Audio, Pdf]
+    if only != "" and klass = Kernel.const_get(only.capitalize)
+      medium_types = [klass]
+    end
+    klass = medium_types.find do |k|
+      if k.respond_to?(:handle_content_type?)
+        k.handle_content_type?(value.content_type)
       end
     end
     if klass.nil?
-      object.errors.add(context.to_sym, HasMedia.errors_messages[:type_error])
-      p object.errors.full_messages
+      object.media_errors = [HasMedia.errors_messages[:type_error]]
       return
     end
     medium = klass.new
@@ -77,11 +72,7 @@ class Medium < ActiveRecord::Base
     medium.file = value
     medium.content_type = value.content_type
     medium.context = context
-    if encode == "false"
-      medium.encode_status = NO_ENCODING
-    else
-      medium.encode_status = ENCODE_WAIT
-    end
+    medium.encode_status = (encode == "false" ? NO_ENCODING : ENCODE_WAIT)
     medium.save
     medium
   end

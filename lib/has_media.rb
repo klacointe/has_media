@@ -73,18 +73,25 @@ module HasMedia
 
     def has_one_medium(context, options = {})
       set_relations(context, :has_one)
-      set_media_links_relation
-      set_callbacks
-
+      set_general_methods
       create_one_accessors(context, options)
     end
 
     def has_many_media(context, options = {})
       set_relations(context, :has_many)
-      set_media_links_relation
-      set_callbacks
-
+      set_general_methods
       create_many_accessors(context, options)
+    end
+
+    def set_general_methods
+      @methods_present ||= false
+      unless @methods_present
+        set_media_links_relation
+        set_attributes
+        set_validate_methods
+        set_callbacks
+      end
+      @methods_present = true
     end
 
     def set_relations(context, relation)
@@ -102,7 +109,21 @@ module HasMedia
     end
 
     def set_callbacks
+      validate :merge_media_errors
       before_save :remove_old_media
+    end
+    def set_attributes
+      attr_accessor :media_errors
+    end
+    def set_validate_methods
+      module_eval <<-"end;", __FILE__, __LINE__
+        def merge_media_errors
+          self.media_errors ||= []
+          self.media_errors.each do |error|
+            self.errors.add_to_base(error)
+          end
+        end
+      end;
     end
 
     def set_media_links_relation
