@@ -62,7 +62,7 @@ module HasMedia
     @@errors_messages
   end
   def self.errors_messages=(h)
-    @@errors_messages.merge(h)
+    @@errors_messages.merge!(h)
   end
 
   def self.included(mod)
