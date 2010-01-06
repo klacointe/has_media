@@ -1,50 +1,11 @@
 = has_media
 
-Description goes here.
+Media Managment Library for ActiveRecord and Carrierwave
 
-== Documentation
 === Create migrations
-class CreateMedia < ActiveRecord::Migration
-  def self.up
-    create_table :media do |t|
-      t.integer  :width
-      t.integer  :height
-      t.integer  :size
-      t.string   :content_type  # required
-      t.string   :url
-      t.string   :filename      # required
-      t.string   :thumbnail
-      t.integer  :encode_status # required
-      t.string   :type          # required
-      t.string   :status
-      t.string   :context       # required
-      t.timestamps
-    end
-  end
 
-  def self.down
-    drop_table :media
-  end
-end
-
-
-class CreateMediaLinks < ActiveRecord::Migration
-  def self.up
-    create_table :media_links do |t|
-      t.integer :medium_id     # required
-      t.integer :mediated_id   # required
-      t.string  :mediated_type # required
-
-      t.timestamps
-    end
-  end
-
-  def self.down
-    drop_table :media_links
-  end
-end
-
+./script/generate has_media
 
 == Copyright
 
-Copyright (c) 2009 klacointe. See LICENSE for details.
+Copyright (c) 2009 AF83. See LICENSE for details.
