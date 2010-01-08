@@ -2,9 +2,31 @@
 
 Media Managment Library for ActiveRecord and Carrierwave
 
+Easy way to link media (ie image, audio, pdf for now) on other activerecords models
+
 === Create migrations
 
 ./script/generate has_media
+
+== Usage
+
+  has_one_medium  :image, :only => :image
+  has_many_media  :images, :only => :image
+
+  has_one_medium  :audio, :only => :audio
+  has_many_media  :audios, :only => :audio
+
+  has_one_medium  :image_no_encode, :only => :image, :encode => false
+
+  has_one_medium  :pdf, :encode => false
+
+== TODO
+
+* Add a video class
+
+== Contributors
+
+klacointe, spk, shingara, nono
 
 == Copyright
 
