@@ -8,8 +8,6 @@ class Medium < ActiveRecord::Base
 
   validates_presence_of :context
 
-  attr_accessible :label, :description
-
   ENCODE_WAIT      = 0
   ENCODE_ENCODING  = 1
   ENCODE_SUCCESS   = 2
