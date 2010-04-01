@@ -9,6 +9,7 @@ module HasMedia
 
   @@store_dir = '/tmp'
   @@directory_uri = ''
+  @@custom_uploaders_path = nil
   @@errors_messages = {:type_error => 'Wrong type'}
   @@images_content_types = [
     'image/jpeg',
@@ -53,6 +54,17 @@ module HasMedia
   end
   def self.directory_uri
     @@directory_uri
+  end
+  def self.custom_uploaders_path=(value)
+    unless value.blank?
+      @@custom_uploaders_path = value
+      Dir.glob(self.custom_uploaders_path + '*.rb').each do |uploader|
+        require uploader
+      end
+    end
+  end
+  def self.custom_uploaders_path
+    @@custom_uploaders_path
   end
   # taken from http://github.com/technoweenie/attachment_fu/blob/master/lib/technoweenie/attachment_fu.rb
   def self.images_content_types

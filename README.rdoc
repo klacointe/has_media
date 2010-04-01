@@ -20,6 +20,20 @@ Easy way to link media (ie image, audio, pdf for now) on other activerecords mod
 
   has_one_medium  :pdf, :encode => false
 
+== Configuration
+
+ * Set custom uploaders path to overload has_media ones
+  HasMedia.custom_uploaders_path = File.dirname(__FILE__) + '/../../app/uploaders'
+
+ * Set the directory path to use to store media
+  HasMedia.directory_path = "media"
+
+ * Set the base uri to access media
+  HasMedia.directory_uri = "/media"
+
+ * Set custom error messages
+  HasMedia.errors_messages = {:type_error => I18n.t('has_media.errors.type_error')}
+
 == TODO
 
 * Add a video class
