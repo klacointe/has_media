@@ -169,4 +169,10 @@ describe "HasMedia" do
     }.should raise_error(RuntimeError, "this exception is normal, useful for testing")
   end
 
+  it "should load custom models" do
+    lambda {
+      HasMedia.custom_models_path = File.join(File.dirname(__FILE__), 'fixtures/models/')
+    }.should raise_error(RuntimeError, "this exception is normal, useful for testing")
+  end
+
 end
