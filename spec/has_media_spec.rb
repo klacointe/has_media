@@ -163,12 +163,6 @@ describe "HasMedia" do
     @medium.errors.full_messages.include?(HasMedia.errors_messages[:type_error])
   end
 
-  it "should load custom uploaders" do
-    lambda {
-      HasMedia.custom_uploaders_path = File.join(File.dirname(__FILE__), 'fixtures/uploaders/')
-    }.should raise_error(RuntimeError, "this exception is normal, useful for testing")
-  end
-
   it "should load custom models" do
     lambda {
       HasMedia.custom_models_path = File.join(File.dirname(__FILE__), 'fixtures/models/')
