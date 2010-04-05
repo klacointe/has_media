@@ -22,8 +22,8 @@ Easy way to link media (ie image, audio, pdf for now) on other activerecords mod
 
 == Configuration
 
- * Set custom uploaders path to overload has_media ones
-  HasMedia.custom_uploaders_path = File.dirname(__FILE__) + '/../../app/uploaders'
+ * Set custom uploaders/models path to overload has_media ones
+  HasMedia.custom_models_path = File.dirname(__FILE__) + '/../../app/models/has_media'
 
  * Set the directory path to use to store media
   HasMedia.directory_path = "media"
