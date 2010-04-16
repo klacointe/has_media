@@ -20,6 +20,11 @@ Easy way to link media (ie image, audio, pdf for now) on other activerecords mod
 
   has_one_medium  :pdf, :encode => false
 
+== Model and Uploaders
+
+You must defined model and uploader with the name given in the only option
+Examples are in the /examples directory...
+
 == Configuration
 
  * Set custom uploaders/models path to overload has_media ones
