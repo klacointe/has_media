@@ -34,6 +34,19 @@ Easy way to link media (ie image, audio, pdf for now) on other activerecords mod
  * Set custom error messages
   HasMedia.errors_messages = {:type_error => I18n.t('has_media.errors.type_error')}
 
+== Testing
+
+Factory example using factory_girl :
+
+  Factory.define :image, :class => Image do |f| 
+    f.content_type 'image/jpeg'
+    f.filename 'image.jpg'
+    f.status 'accepted'
+    f.encode_status 0
+    f.add_attribute :context, 'images'
+    f.file {ActionController::TestUploadedFile.new(File.join(Rails.root, '/spec/factories/image.jpg'), 'image/jpeg')}
+  end
+
 == TODO
 
 * Add a video class
