@@ -19,6 +19,7 @@ class Medium < ActiveRecord::Base
     :image => 'png',
     :audio => 'mp3',
     :pdf   => 'pdf',
+    :video => 'flv'
   }
 
   # Allowed MIME types for upload
@@ -143,7 +144,7 @@ class Medium < ActiveRecord::Base
   end
 
   def file_extension
-    EXTENSIONS[type.downcase.to_sym]
+    EXTENSIONS[type.to_s.downcase.to_sym]
   end
 
 private
