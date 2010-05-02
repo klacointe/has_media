@@ -26,7 +26,7 @@ class Medium < ActiveRecord::Base
   # need custom configuration
   # TODO: add errors if not type of file
   @@mime_types = {
-    :video => ['video/mpeg', 'video/mp4', 'video/quicktime', 'video/x-ms-wmv', 'video/x-flv', 'video/x-msvideo'],
+    :video => HasMedia.videos_content_types,
     :image => HasMedia.images_content_types,
     :audio => ['audio/mpeg', 'audio/x-ms-wma', 'audio/x-wav'],
     :flash => ['application/x-shockwave-flash'],

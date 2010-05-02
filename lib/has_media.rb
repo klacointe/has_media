@@ -43,6 +43,14 @@ module HasMedia
     'image/gi_',
     'image/x-citrix-pjpeg'
   ]
+  @@videos_content_types = [
+    'video/mpeg',
+    'video/mp4',
+    'video/quicktime',
+    'video/x-ms-wmv',
+    'video/x-flv',
+    'video/x-msvideo'
+  ]
 
   def self.medium_types=(value)
     @@medium_types = value
@@ -76,6 +84,9 @@ module HasMedia
   # taken from http://github.com/technoweenie/attachment_fu/blob/master/lib/technoweenie/attachment_fu.rb
   def self.images_content_types
     @@images_content_types
+  end
+  def self.videos_content_types
+    @@videos_content_types
   end
   def self.errors_messages
     @@errors_messages
