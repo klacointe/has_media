@@ -51,9 +51,10 @@ class Medium < ActiveRecord::Base
     return name.downcase
   end
 
+  # FIXME : get medium types from available classes, use has_media.medium_types
   def self.new_from_value(object, value, context, encode, only)
     only ||= ""
-    medium_types = [Image, Audio, Pdf]
+    medium_types = HasMedia.medium_types
     if only != "" and klass = Kernel.const_get(only.capitalize)
       medium_types = [klass]
     end

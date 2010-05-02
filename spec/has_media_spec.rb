@@ -23,6 +23,7 @@ describe "HasMedia" do
     end
     HasMedia.directory_path = 'tmp'
     HasMedia.directory_uri = '/media'
+    HasMedia.medium_types = [Image, Video, Pdf, Audio]
   end
 
   before :each do

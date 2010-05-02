@@ -7,6 +7,7 @@ module HasMedia
 
   VERSION = "0.0.1"
 
+  @@medium_types = []
   @@store_dir = '/tmp'
   @@directory_uri = ''
   @@custom_models_path = nil
@@ -43,6 +44,12 @@ module HasMedia
     'image/x-citrix-pjpeg'
   ]
 
+  def self.medium_types=(value)
+    @@medium_types = value
+  end
+  def self.medium_types
+    @@medium_types
+  end
   def self.directory_path=(value)
     @@store_dir = value
   end
