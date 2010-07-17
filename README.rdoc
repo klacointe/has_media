@@ -1,8 +1,8 @@
-= has_media
+= Has Media
 
 Media Managment Library for ActiveRecord and Carrierwave
 
-Easy way to link media (ie image, audio, pdf for now) on other activerecords models
+Easy way to link media (ie image, audio, video, pdf, ...) on other activerecords models
 
 === Create migrations
 
@@ -27,8 +27,7 @@ Examples are in the /examples directory...
 
 == Configuration
 
- * Set custom uploaders/models path to overload has_media ones
-  HasMedia.custom_models_path = File.dirname(__FILE__) + '/../../app/models/has_media'
+ * Configuration take place in config/initializers/has_media.rb
 
  * Set the directory path to use to store media
   HasMedia.directory_path = "media"
@@ -38,6 +37,14 @@ Examples are in the /examples directory...
 
  * Set custom error messages
   HasMedia.errors_messages = {:type_error => I18n.t('has_media.errors.type_error')}
+
+ * Set the allowed medium types for your application (used if no :only option given)
+  HasMedia.medium_types = [Image, Video]
+
+ * Require you uploaders 
+  Dir.glob(File.dirname(__FILE__) + '/../app/uploaders/*.rb').each do |uploader|
+    require uploader
+  end
 
 == Testing
 
@@ -52,9 +59,10 @@ Factory example using factory_girl :
     f.file {ActionController::TestUploadedFile.new(File.join(Rails.root, '/spec/factories/image.jpg'), 'image/jpeg')}
   end
 
-== TODO
-
-* Add a video class
+== TODO 
+ * Generator for initializer
+ * Rails 3 compatibility
+ * Doc for testing (ActionController::TestUploadedFile is now obsolete in rails 3)
 
 == Contributors
 
