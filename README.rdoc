@@ -63,6 +63,8 @@ Factory example using factory_girl :
  * Generator for initializer
  * Rails 3 compatibility
  * Doc for testing (ActionController::TestUploadedFile is now obsolete in rails 3)
+ * Add controller and views for ajax stuff (form fields, display, ...)
+ * Fix problem with migrations generator timestamps
 
 == Contributors
 
