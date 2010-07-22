@@ -19,7 +19,6 @@ begin
     gem.add_dependency('carrierwave-rails3', '>=0.4.5')
     gem.add_dependency('activerecord', '>=3.0.0.beta4')
     gem.add_dependency('activesupport', '>=3.0.0.beta4')
-    gem.add_dependency('sqlite3-ruby', '>=1.3.1')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

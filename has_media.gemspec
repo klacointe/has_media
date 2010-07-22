@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
      "lib/has_media/models/media_link.rb",
      "lib/has_media/models/medium.rb",
      "lib/has_media/uploaders/medium_uploader.rb",
+     "lib/tasks/rspec.rake",
      "spec/fixtures/media/Conversational_Capital _Explained.pdf",
      "spec/fixtures/media/audio.wav",
      "spec/fixtures/media/image.jpg",
@@ -79,20 +80,17 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
       s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0.beta4"])
       s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
-      s.add_runtime_dependency(%q<sqlite3-ruby>, [">= 1.3.1"])
     else
       s.add_dependency(%q<rspec>, [">= 2.0.0.beta.17"])
       s.add_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
       s.add_dependency(%q<activerecord>, [">= 3.0.0.beta4"])
       s.add_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
-      s.add_dependency(%q<sqlite3-ruby>, [">= 1.3.1"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 2.0.0.beta.17"])
     s.add_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
     s.add_dependency(%q<activerecord>, [">= 3.0.0.beta4"])
     s.add_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
-    s.add_dependency(%q<sqlite3-ruby>, [">= 1.3.1"])
   end
 end
 
