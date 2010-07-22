@@ -1,10 +1,13 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'spec'
-require 'spec/autorun'
 require 'rubygems'
+require 'rspec'
+require 'rspec/core'
+require 'rspec/core/rake_task'
 require 'action_controller'
-require 'action_controller/test_process'
+#require 'action_controller/test_process'
+require 'action_dispatch'
+require 'action_dispatch/testing/test_process'
 require 'has_media'
 
 dbconfig = {
@@ -46,8 +49,42 @@ class TestMigration < ActiveRecord::Migration
   end
 end
 
-Spec::Runner.configure do |config|
-    config.before(:all) { TestMigration.up }
-    config.after(:all) { TestMigration.down }
-    config.after(:each) { Medium.destroy_all; MediaLink.destroy_all; MediumRelatedTest.destroy_all; }
+RSpec.configure do |c|
+  c.before(:all) do
+    TestMigration.up
+  end
+  c.before(:each) do
+    @real_world = RSpec.world
+    RSpec.instance_variable_set(:@world, RSpec::Core::World.new)
+  end
+  c.after(:all) do
+    TestMigration.down
+  end
+  c.after(:each) do
+    RSpec.instance_variable_set(:@world, @real_world)
+    Medium.destroy_all
+    MediaLink.destroy_all
+    MediumRelatedTest.destroy_all
+  end
+end
+
+
+def file_path( *paths )
+  File.expand_path(File.join(File.dirname(__FILE__), 'fixtures', 'media', *paths))
+end
+
+def stub_temp_file(filename, mime_type=nil, fake_name=nil)
+  raise "#{file_path(filename)} file does not exist" unless File.exist?(file_path(filename))
+
+  t = Tempfile.new(filename)
+  FileUtils.copy_file(file_path(filename), t.path)
+
+  # This is stupid, but for some reason rspec won't play nice...
+  eval <<-EOF
+def t.original_filename; '#{fake_name || filename}'; end
+def t.content_type; '#{mime_type}'; end
+def t.local_path; path; end
+  EOF
+
+  return t
 end

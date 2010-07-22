@@ -31,10 +31,10 @@ describe "HasMedia" do
     before :each do
       HasMedia.medium_types = [Image, Video, Pdf, Audio]
       @medium = MediumRelatedTest.new
-      @image = ActionController::TestUploadedFile.new('spec/fixtures/media/image.jpg', 'image/jpeg')
-      @audio = ActionController::TestUploadedFile.new('spec/fixtures/media/audio.wav', 'audio/wav')
-      @image_bis = ActionController::TestUploadedFile.new('spec/fixtures/media/image_bis.jpg', 'image/jpeg')
-      @pdf = ActionController::TestUploadedFile.new('spec/fixtures/media/Conversational_Capital _Explained.pdf', 'application/pdf')
+      @image = stub_temp_file('image.jpg', 'image/jpeg')
+      @audio = stub_temp_file('audio.wav', 'audio/wav')
+      @image_bis = stub_temp_file('image_bis.jpg', 'image/jpeg')
+      @pdf = stub_temp_file('Conversational_Capital _Explained.pdf', 'application/pdf')
     end
 
     it 'should not have 2 has_one_medium with same context' do
@@ -168,7 +168,7 @@ describe "HasMedia" do
     end
 
     it "should add errors on parent model if type is not allowed" do
-      @image = ActionController::TestUploadedFile.new('spec/fixtures/media/image.jpg', 'image/jpeg')
+      @image = stub_temp_file('image.jpg', 'image/jpeg')
       @medium.audio = @image
       @medium.valid?
       @medium.should_not be_valid
@@ -180,7 +180,7 @@ describe "HasMedia" do
   describe "Configuration" do
     it "should check allowed medium types if no :only option given" do
       HasMedia.medium_types = [Image]
-      @pdf = ActionController::TestUploadedFile.new('spec/fixtures/media/Conversational_Capital _Explained.pdf', 'application/pdf')
+      @pdf = stub_temp_file('Conversational_Capital _Explained.pdf', 'application/pdf')
       @medium = MediumRelatedTest.new
       @medium.pdf = @pdf
       @medium.valid?
