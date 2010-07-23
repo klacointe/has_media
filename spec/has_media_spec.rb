@@ -103,6 +103,7 @@ describe "HasMedia" do
       @medium.image = @image_bis
       @medium.save
       @medium.image.filename.should == @image_bis.original_filename
+      @medium.reload
       @medium.image = @image
       @medium.save
       @medium.image.filename.should == @image.original_filename
