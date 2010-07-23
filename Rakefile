@@ -36,9 +36,9 @@ end
 #  spec.rcov = true
 #end
 #
-#task :spec => :check_dependencies
-#
-#task :default => :spec
+task :spec => :check_dependencies
+
+task :default => :spec
 
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
