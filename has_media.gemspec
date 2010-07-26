@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["klacointe", "spk"]
-  s.date = %q{2010-07-22}
+  s.date = %q{2010-07-26}
   s.description = %q{Media Managment Library for ActiveRecord and Carrierwave}
   s.email = %q{kevinlacointe@gmail.com}
   s.extra_rdoc_files = [
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     ".rspec",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
@@ -48,7 +49,6 @@ Gem::Specification.new do |s|
      "spec/fixtures/models/image.rb",
      "spec/fixtures/uploaders/uploader_with_exception.rb",
      "spec/has_media_spec.rb",
-     "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/AF83/has_media}
