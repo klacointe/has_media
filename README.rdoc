@@ -60,10 +60,9 @@ Factory example using factory_girl :
   end
 
 == TODO 
- * Rails 3 compatibility
- * Doc for testing (ActionController::TestUploadedFile is now obsolete in rails 3)
+ * Doc for testing (ActionController::TestUploadedFile is now obsolete in rails 3), add HasMediaTestHelper with stub_temp_file method
  * Generator for initializer
- * Add controller and views for ajax stuff (form fields, display, ...)
+ * Add controller and views examples with overload system (form fields, display, ...)
  * Fix problem with migrations generator timestamps
  * Generator for models and uploaders (Type in Image, Video, Audio, Pdf) :
   rails generate has_media_model Type Name
