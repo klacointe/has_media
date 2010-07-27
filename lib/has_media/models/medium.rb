@@ -55,7 +55,7 @@ class Medium < ActiveRecord::Base
   def self.new_from_value(object, value, context, encode, only)
     only ||= ""
     medium_types = HasMedia.medium_types
-    if only != "" and klass = Kernel.const_get(only.capitalize)
+    if only != "" and klass = Kernel.const_get(only.camelize)
       medium_types = [klass]
     end
     klass = medium_types.find do |k|
