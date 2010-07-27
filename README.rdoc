@@ -4,6 +4,8 @@ Media Managment Library for ActiveRecord and Carrierwave
 
 Easy way to link media (ie image, audio, video, pdf, ...) on other activerecords models
 
+Use master for Rails 2.3.8 and rails3 for Rails 3
+
 === Create migrations
 
 ./script/generate has_media
