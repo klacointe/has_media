@@ -51,6 +51,12 @@ module HasMedia
     'video/x-flv',
     'video/x-msvideo'
   ]
+  @@encoded_extensions = [
+    :image => 'png',
+    :audio => 'mp3',
+    :pdf   => 'pdf',
+    :video => 'flv'
+  ]
 
   def self.medium_types=(value)
     @@medium_types = value

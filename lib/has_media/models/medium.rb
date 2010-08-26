@@ -15,13 +15,6 @@ class Medium < ActiveRecord::Base
   ENCODE_NOT_READY = 4
   NO_ENCODING      = 5
 
-  EXTENSIONS = {
-    :image => 'png',
-    :audio => 'mp3',
-    :pdf   => 'pdf',
-    :video => 'flv'
-  }
-
   # Allowed MIME types for upload
   # need custom configuration
   # TODO: add errors if not type of file
@@ -145,7 +138,7 @@ class Medium < ActiveRecord::Base
   end
 
   def file_extension
-    EXTENSIONS[type.to_s.downcase.to_sym]
+    HasMedia.encoded_extensions[type.to_s.downcase.to_sym]
   end
 
 private
