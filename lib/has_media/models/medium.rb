@@ -138,7 +138,11 @@ class Medium < ActiveRecord::Base
   end
 
   def file_extension
-    HasMedia.encoded_extensions[type.to_s.downcase.to_sym]
+    sym = type.underscore.to_sym
+    unless HasMedia.encoded_extensions.keys.include?(sym)
+      raise Exception.new("You need to add encoded extension configuration for :#{sym}")
+    end
+    HasMedia.encoded_extensions[sym]
   end
 
 private
