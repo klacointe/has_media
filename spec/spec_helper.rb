@@ -18,7 +18,7 @@ dbconfig = {
 
 ActiveRecord::Base.establish_connection(dbconfig)
 ActiveRecord::Migration.verbose = false
-#ActiveRecord::Base.logger = Logger.new(STDOUT)
+ActiveRecord::Base.logger = Logger.new(STDOUT)
 class TestMigration < ActiveRecord::Migration
   def self.up
     create_table :medium_related_tests, :force => true do |t|
