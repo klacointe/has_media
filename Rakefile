@@ -17,8 +17,8 @@ begin
     gem.authors = ["klacointe", "spk"]
     gem.add_development_dependency "rspec", ">=2.0.0.beta.20"
     gem.add_dependency('carrierwave-rails3', '>=0.4.5')
-    gem.add_dependency('activerecord', '>=4.0.0.rc2')
-    gem.add_dependency('activesupport', '>=3.0.0.rc2')
+    gem.add_dependency('activerecord', '>=3.0.0.beta3')
+    gem.add_dependency('activesupport', '>=3.0.0.beta3')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

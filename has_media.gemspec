@@ -78,19 +78,19 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 2.0.0.beta.20"])
       s.add_runtime_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
-      s.add_runtime_dependency(%q<activerecord>, [">= 4.0.0.rc2"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0.rc2"])
+      s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0.beta3"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
     else
       s.add_dependency(%q<rspec>, [">= 2.0.0.beta.20"])
       s.add_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
-      s.add_dependency(%q<activerecord>, [">= 4.0.0.rc2"])
-      s.add_dependency(%q<activesupport>, [">= 3.0.0.rc2"])
+      s.add_dependency(%q<activerecord>, [">= 3.0.0.beta3"])
+      s.add_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 2.0.0.beta.20"])
     s.add_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
-    s.add_dependency(%q<activerecord>, [">= 4.0.0.rc2"])
-    s.add_dependency(%q<activesupport>, [">= 3.0.0.rc2"])
+    s.add_dependency(%q<activerecord>, [">= 3.0.0.beta3"])
+    s.add_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
   end
 end
 
