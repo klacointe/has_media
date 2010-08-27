@@ -115,14 +115,14 @@ class Medium < ActiveRecord::Base
   end
   # system path for a medium
   def file_path(thumbnail = nil)
-    final_name = filename.gsub /\.[^.]+$/, '.' + file_extension
+    final_name = filename.gsub (/\.[^.]{3,4}$/, "") + '.' + file_extension
     final_name[-4,0] = "_#{thumbnail}" if thumbnail
     File.join(directory_path, final_name)
   end
 
   # http uri for a medium
   def file_uri(thumbnail = nil)
-    final_name = filename.gsub /\.[^.]+$/, '.' + file_extension
+    final_name = filename.gsub (/\.[^.]{1,4}$/, "") + '.' + file_extension
     final_name[-4,0] = "_#{thumbnail}" if thumbnail
     File.join(directory_uri, final_name)
   end
