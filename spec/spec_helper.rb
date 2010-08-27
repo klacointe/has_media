@@ -8,9 +8,10 @@ require 'action_controller/test_process'
 require 'has_media'
 
 dbconfig = {
-  :adapter => 'sqlite3',
-  :database => ':memory:',
-#  :database => 'has_media.sqlite'
+  :adapter => 'mysql',
+  :database => 'has_media',
+  :username => 'test',
+  :password => 'test'
 }
 
 ActiveRecord::Base.establish_connection(dbconfig)
