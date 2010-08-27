@@ -125,9 +125,9 @@ class Medium < ActiveRecord::Base
 
   def encoded_file_name(version = nil)
     # remove original extension and add the encoded extension
-    name = filename.gsub (/\.[^.]{1,4}$/, "") + '.' + file_extension
-    name = "#{version}_#{name}" if version
-    name
+    final_name = filename.gsub (/\.[^.]{1,4}$/, "") + '.' + file_extension
+    final_name[-4,0] = "_#{thumbnail}" if thumbnail
+    final_name
   end
 
   # http uri of directory which stores media
