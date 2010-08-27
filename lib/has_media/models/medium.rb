@@ -31,7 +31,7 @@ class Medium < ActiveRecord::Base
   after_initialize  :set_default_encoding_status
 
 
-  named_scope :with_context, lambda {|context|
+  scope :with_context, lambda {|context|
     { :conditions => { :context => context.to_s} }
   }
 
