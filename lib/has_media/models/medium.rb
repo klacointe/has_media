@@ -114,18 +114,22 @@ class Medium < ActiveRecord::Base
     self.file.store_dir
   end
   # system path for a medium
-  def file_path(thumbnail = nil)
-    final_name = filename.gsub (/\.[^.]{3,4}$/, "") + '.' + file_extension
-    final_name[-4,0] = "_#{thumbnail}" if thumbnail
-    File.join(directory_path, final_name)
+  def file_path(version = nil)
+    File.join(directory_path, encoded_file_name(version))
   end
 
   # http uri for a medium
-  def file_uri(thumbnail = nil)
-    final_name = filename.gsub (/\.[^.]{1,4}$/, "") + '.' + file_extension
-    final_name[-4,0] = "_#{thumbnail}" if thumbnail
-    File.join(directory_uri, final_name)
+  def file_uri(version = nil)
+    File.join(directory_uri, encoded_file_name(version))
   end
+
+  def encoded_file_name(version = nil)
+    # remove original extension and add the encoded extension
+    name = filename.gsub (/\.[^.]{1,4}$/, "") + '.' + file_extension
+    name = "#{thumbnail}_#{name}"
+    name
+  end
+
   # http uri of directory which stores media
   def directory_uri
     File.join(HasMedia.directory_uri,
