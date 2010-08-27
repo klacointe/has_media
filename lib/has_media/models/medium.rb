@@ -126,7 +126,7 @@ class Medium < ActiveRecord::Base
   def encoded_file_name(version = nil)
     # remove original extension and add the encoded extension
     name = filename.gsub (/\.[^.]{1,4}$/, "") + '.' + file_extension
-    name = "#{thumbnail}_#{name}"
+    name = "#{version}_#{name}" if version
     name
   end
 
