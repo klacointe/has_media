@@ -2,6 +2,7 @@ require 'rubygems'
 require 'active_record'
 require 'active_support'
 require 'carrierwave'
+require 'mime/types'
 
 module HasMedia
 

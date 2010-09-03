@@ -44,8 +44,12 @@ class Medium < ActiveRecord::Base
     return name.downcase
   end
 
-  # FIXME : get medium types from available classes, use has_media.medium_types
   def self.new_from_value(object, value, context, encode, only)
+    if value.respond_to?(:content_type)
+      mime_type = value.content_type
+    else
+      mime_type = MIME::Types.type_for(value.path).first.content_type
+    end
     only ||= ""
     medium_types = HasMedia.medium_types
     if only != "" and klass = Kernel.const_get(only.camelize)
@@ -53,7 +57,7 @@ class Medium < ActiveRecord::Base
     end
     klass = medium_types.find do |k|
       if k.respond_to?(:handle_content_type?)
-        k.handle_content_type?(value.content_type)
+        k.handle_content_type?(mime_type)
       end
     end
     if klass.nil?
@@ -61,9 +65,13 @@ class Medium < ActiveRecord::Base
       return
     end
     medium = klass.new
-    medium.filename = self.sanitize(value.original_filename)
+    if value.respond_to?(:original_filename)
+      medium.filename = self.sanitize(value.original_filename)
+    else
+      medium.filename = self.sanitize(File.basename(value.path))
+    end
     medium.file = value
-    medium.content_type = value.content_type
+    medium.content_type = mime_type
     medium.context = context
     medium.encode_status = (encode == "false" ? NO_ENCODING : ENCODE_WAIT)
     medium.save
