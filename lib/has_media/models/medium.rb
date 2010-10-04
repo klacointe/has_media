@@ -170,7 +170,6 @@ private
   # TODO : remove all files, not only the original one
   def remove_file_from_fs
     require 'fileutils'
-    $stderr.puts "DELETE MEDIA"
     FileUtils.rm_rf(self.directory_path)
   end
 end
