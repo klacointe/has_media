@@ -13,7 +13,7 @@ begin
     gem.summary = %Q{Media Managment Library for ActiveRecord and Carrierwave}
     gem.description = %Q{Media Managment Library for ActiveRecord and Carrierwave}
     gem.email = "kevinlacointe@gmail.com"
-    gem.homepage = "http://github.com/AF83/has_media"
+    gem.homepage = "http://github.com/klacointe/has_media"
     gem.authors = ["klacointe", "spk"]
     gem.add_development_dependency "rspec", ">=2.0.0.beta.20"
     gem.add_dependency('carrierwave-rails3', '>=0.4.5')

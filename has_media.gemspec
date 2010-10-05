@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["klacointe", "spk"]
-  s.date = %q{2010-08-27}
+  s.date = %q{2010-10-05}
   s.description = %q{Media Managment Library for ActiveRecord and Carrierwave}
   s.email = %q{kevinlacointe@gmail.com}
   s.extra_rdoc_files = [
@@ -51,7 +51,7 @@ Gem::Specification.new do |s|
      "spec/has_media_spec.rb",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/AF83/has_media}
+  s.homepage = %q{http://github.com/klacointe/has_media}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
@@ -79,18 +79,21 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, [">= 2.0.0.beta.20"])
       s.add_runtime_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
       s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0.beta3"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0.beta3"])
+      s.add_runtime_dependency(%q<mime-types>, [">= 1.16"])
     else
       s.add_dependency(%q<rspec>, [">= 2.0.0.beta.20"])
       s.add_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
       s.add_dependency(%q<activerecord>, [">= 3.0.0.beta3"])
-      s.add_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
+      s.add_dependency(%q<activesupport>, [">= 3.0.0.beta3"])
+      s.add_dependency(%q<mime-types>, [">= 1.16"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 2.0.0.beta.20"])
     s.add_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
     s.add_dependency(%q<activerecord>, [">= 3.0.0.beta3"])
-    s.add_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
+    s.add_dependency(%q<activesupport>, [">= 3.0.0.beta3"])
+    s.add_dependency(%q<mime-types>, [">= 1.16"])
   end
 end
 
