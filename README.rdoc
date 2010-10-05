@@ -1,8 +1,10 @@
-= has_media
+= Has Media
 
 Media Managment Library for ActiveRecord and Carrierwave
 
-Easy way to link media (ie image, audio, pdf for now) on other activerecords models
+Easy way to link media (ie image, audio, video, pdf, ...) on other activerecords models
+
+Use branch rails2.3 for Rails 2.3.x and rails3 for Rails 3
 
 === Create migrations
 
@@ -27,8 +29,7 @@ Examples are in the /examples directory...
 
 == Configuration
 
- * Set custom uploaders/models path to overload has_media ones
-  HasMedia.custom_models_path = File.dirname(__FILE__) + '/../../app/models/has_media'
+ * Configuration take place in config/initializers/has_media.rb
 
  * Set the directory path to use to store media
   HasMedia.directory_path = "media"
@@ -38,6 +39,21 @@ Examples are in the /examples directory...
 
  * Set custom error messages
   HasMedia.errors_messages = {:type_error => I18n.t('has_media.errors.type_error')}
+
+ * Set the allowed medium types for your application (used if no :only option given)
+  HasMedia.medium_types = [Image, Video, Audio]
+
+ * Set the extension of encoded files to use for each medium types (used in file_uri and file_path)
+  HasMedia.encoded_extensions = {
+    :image => 'png',
+    :audio => 'ogg',
+    :video => 'flv'
+  }
+
+ * Require you uploaders 
+  Dir.glob(File.dirname(__FILE__) + '/../app/uploaders/*.rb').each do |uploader|
+    require uploader
+  end
 
 == Testing
 
@@ -52,9 +68,13 @@ Factory example using factory_girl :
     f.file {ActionController::TestUploadedFile.new(File.join(Rails.root, '/spec/factories/image.jpg'), 'image/jpeg')}
   end
 
-== TODO
-
-* Add a video class
+== TODO 
+ * Doc for testing (ActionController::TestUploadedFile is now obsolete in rails 3), add HasMediaTestHelper with stub_temp_file method
+ * Generator for initializer
+ * Add controller and views examples with overload system (form fields, display, ...)
+ * Fix problem with migrations generator timestamps
+ * Generator for models and uploaders (Type in Image, Video, Audio, Pdf) :
+  rails generate has_media_model Type Name
 
 == Contributors
 

@@ -2,6 +2,7 @@ require 'rubygems'
 require 'active_record'
 require 'active_support'
 require 'carrierwave'
+require 'mime/types'
 
 module HasMedia
 
@@ -51,12 +52,24 @@ module HasMedia
     'video/x-flv',
     'video/x-msvideo'
   ]
+  @@encoded_extensions = {
+    :image => 'png',
+    :audio => 'mp3',
+    :pdf   => 'pdf',
+    :video => 'flv'
+  }
 
   def self.medium_types=(value)
     @@medium_types = value
   end
   def self.medium_types
     @@medium_types
+  end
+  def self.encoded_extensions=(value)
+    @@encoded_extensions = value
+  end
+  def self.encoded_extensions
+    @@encoded_extensions
   end
   def self.directory_path=(value)
     @@store_dir = value

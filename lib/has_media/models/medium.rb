@@ -15,13 +15,6 @@ class Medium < ActiveRecord::Base
   ENCODE_NOT_READY = 4
   NO_ENCODING      = 5
 
-  EXTENSIONS = {
-    :image => 'png',
-    :audio => 'mp3',
-    :pdf   => 'pdf',
-    :video => 'flv'
-  }
-
   # Allowed MIME types for upload
   # need custom configuration
   # TODO: add errors if not type of file
@@ -38,7 +31,7 @@ class Medium < ActiveRecord::Base
   after_initialize  :set_default_encoding_status
 
 
-  named_scope :with_context, lambda {|context|
+  scope :with_context, lambda {|context|
     { :conditions => { :context => context.to_s} }
   }
 
@@ -51,16 +44,20 @@ class Medium < ActiveRecord::Base
     return name.downcase
   end
 
-  # FIXME : get medium types from available classes, use has_media.medium_types
   def self.new_from_value(object, value, context, encode, only)
+    if value.respond_to?(:content_type)
+      mime_type = value.content_type
+    else
+      mime_type = MIME::Types.type_for(value.path).first.content_type
+    end
     only ||= ""
     medium_types = HasMedia.medium_types
-    if only != "" and klass = Kernel.const_get(only.capitalize)
+    if only != "" and klass = Kernel.const_get(only.camelize)
       medium_types = [klass]
     end
     klass = medium_types.find do |k|
       if k.respond_to?(:handle_content_type?)
-        k.handle_content_type?(value.content_type)
+        k.handle_content_type?(mime_type)
       end
     end
     if klass.nil?
@@ -68,9 +65,13 @@ class Medium < ActiveRecord::Base
       return
     end
     medium = klass.new
-    medium.filename = self.sanitize(value.original_filename)
+    if value.respond_to?(:original_filename)
+      medium.filename = self.sanitize(value.original_filename)
+    else
+      medium.filename = self.sanitize(File.basename(value.path))
+    end
     medium.file = value
-    medium.content_type = value.content_type
+    medium.content_type = mime_type
     medium.context = context
     medium.encode_status = (encode == "false" ? NO_ENCODING : ENCODE_WAIT)
     medium.save
@@ -121,18 +122,22 @@ class Medium < ActiveRecord::Base
     self.file.store_dir
   end
   # system path for a medium
-  def file_path(thumbnail = nil)
-    final_name = filename.gsub /\.[^.]+$/, '.' + file_extension
-    final_name[-4,0] = "_#{thumbnail}" if thumbnail
-    File.join(directory_path, final_name)
+  def file_path(version = nil)
+    File.join(directory_path, encoded_file_name(version))
   end
 
   # http uri for a medium
-  def file_uri(thumbnail = nil)
-    final_name = filename.gsub /\.[^.]+$/, '.' + file_extension
-    final_name[-4,0] = "_#{thumbnail}" if thumbnail
-    File.join(directory_uri, final_name)
+  def file_uri(version = nil)
+    File.join(directory_uri, encoded_file_name(version))
   end
+
+  def encoded_file_name(version = nil)
+    # remove original extension and add the encoded extension
+    final_name = filename.gsub(/\.[^.]{1,4}$/, "") + '.' + file_extension
+    final_name[-4,0] = "_#{version}" if version
+    final_name
+  end
+
   # http uri of directory which stores media
   def directory_uri
     File.join(HasMedia.directory_uri,
@@ -145,7 +150,11 @@ class Medium < ActiveRecord::Base
   end
 
   def file_extension
-    EXTENSIONS[type.to_s.downcase.to_sym]
+    sym = type.underscore.to_sym
+    unless HasMedia.encoded_extensions.keys.include?(sym)
+      raise Exception.new("You need to add encoded extension configuration for :#{sym}")
+    end
+    HasMedia.encoded_extensions[sym]
   end
 
 private
@@ -161,6 +170,6 @@ private
   # TODO : remove all files, not only the original one
   def remove_file_from_fs
     require 'fileutils'
-    FileUtils.rm_rf(self.original_file_path)
+    FileUtils.rm_rf(self.directory_path)
   end
 end
