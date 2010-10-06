@@ -16,7 +16,7 @@ begin
     gem.homepage = "http://github.com/AF83/has_media"
     gem.authors = ["klacointe", "spk"]
     gem.add_development_dependency "rspec", "<=1.3.0"
-    gem.add_dependency('carrierwave', '<=0.5.0')
+    gem.add_dependency('carrierwave', '=0.4.5')
     gem.add_dependency('activerecord', '=2.3.8')
     gem.add_dependency('activesupport', '=2.3.8')
     gem.add_dependency('mime-types', '>=1.16')
