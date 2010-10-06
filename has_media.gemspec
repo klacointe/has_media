@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["klacointe", "spk"]
-  s.date = %q{2010-10-06}
+  s.date = %q{2010-08-27}
   s.description = %q{Media Managment Library for ActiveRecord and Carrierwave}
   s.email = %q{kevinlacointe@gmail.com}
   s.extra_rdoc_files = [
@@ -58,17 +58,17 @@ Gem::Specification.new do |s|
   s.summary = %q{Media Managment Library for ActiveRecord and Carrierwave}
   s.test_files = [
     "spec/spec_helper.rb",
-     "spec/fixtures/models/image.rb",
-     "spec/fixtures/uploaders/uploader_with_exception.rb",
      "spec/has_media_spec.rb",
+     "spec/fixtures/uploaders/uploader_with_exception.rb",
+     "spec/fixtures/models/image.rb",
+     "examples/uploaders/image_uploader.rb",
+     "examples/uploaders/pdf_uploader.rb",
+     "examples/uploaders/video_uploader.rb",
+     "examples/uploaders/audio_uploader.rb",
      "examples/models/image.rb",
      "examples/models/pdf.rb",
      "examples/models/audio.rb",
-     "examples/models/video.rb",
-     "examples/uploaders/pdf_uploader.rb",
-     "examples/uploaders/audio_uploader.rb",
-     "examples/uploaders/video_uploader.rb",
-     "examples/uploaders/image_uploader.rb"
+     "examples/models/video.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -76,24 +76,21 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<rspec>, ["<= 1.3.0"])
-      s.add_runtime_dependency(%q<carrierwave>, ["= 0.4.5"])
-      s.add_runtime_dependency(%q<activerecord>, ["= 2.3.8"])
-      s.add_runtime_dependency(%q<activesupport>, ["= 2.3.8"])
-      s.add_runtime_dependency(%q<mime-types>, [">= 1.16"])
+      s.add_development_dependency(%q<rspec>, [">= 2.0.0.beta.20"])
+      s.add_runtime_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
+      s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0.beta3"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
     else
-      s.add_dependency(%q<rspec>, ["<= 1.3.0"])
-      s.add_dependency(%q<carrierwave>, ["= 0.4.5"])
-      s.add_dependency(%q<activerecord>, ["= 2.3.8"])
-      s.add_dependency(%q<activesupport>, ["= 2.3.8"])
-      s.add_dependency(%q<mime-types>, [">= 1.16"])
+      s.add_dependency(%q<rspec>, [">= 2.0.0.beta.20"])
+      s.add_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
+      s.add_dependency(%q<activerecord>, [">= 3.0.0.beta3"])
+      s.add_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
     end
   else
-    s.add_dependency(%q<rspec>, ["<= 1.3.0"])
-    s.add_dependency(%q<carrierwave>, ["= 0.4.5"])
-    s.add_dependency(%q<activerecord>, ["= 2.3.8"])
-    s.add_dependency(%q<activesupport>, ["= 2.3.8"])
-    s.add_dependency(%q<mime-types>, [">= 1.16"])
+    s.add_dependency(%q<rspec>, [">= 2.0.0.beta.20"])
+    s.add_dependency(%q<carrierwave-rails3>, [">= 0.4.5"])
+    s.add_dependency(%q<activerecord>, [">= 3.0.0.beta3"])
+    s.add_dependency(%q<activesupport>, [">= 3.0.0.beta4"])
   end
 end
 
