@@ -41,19 +41,21 @@ Available options are :
 - encode : if false is given, set the encode status of this medium 
   to NO_ENCODING instead of ENCODE_WAIT, default to true
 
-class MyModelWithMedia < ActiveRecord::Base
+Example :
 
-  has_one_medium  :image, :only => :image
-  has_many_media  :images, :only => :image
+  class MyModelWithMedia < ActiveRecord::Base
 
-  has_one_medium  :audio, :only => :audio
-  has_many_media  :audios, :only => :audio
+    has_one_medium  :image, :only => :image
+    has_many_media  :images, :only => :image
 
-  has_one_medium  :image_no_encode, :only => :image, :encode => false
+    has_one_medium  :audio, :only => :audio
+    has_many_media  :audios, :only => :audio
 
-  has_one_medium  :pdf, :encode => false
+    has_one_medium  :image_no_encode, :only => :image, :encode => false
 
-end
+    has_one_medium  :pdf, :encode => false
+
+  end
 
 == Configuration
 
