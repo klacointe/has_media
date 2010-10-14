@@ -104,6 +104,8 @@ Factory example using factory_girl :
 - Add controller and views examples with overload system (form fields, display, ...)
 - Fix problem with migrations generator timestamps
 - Generator for models and uploaders (Type in Image, Video, Audio, Pdf) : rails generate has_media_model Type Name
+- Document code
+- add example app on github
 
 == Contributors
 
