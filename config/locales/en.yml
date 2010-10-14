@@ -1,0 +1,4 @@
+en:
+  has_media:
+    errors:
+      type_error: "File type error"
