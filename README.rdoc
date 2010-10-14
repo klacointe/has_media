@@ -4,13 +4,44 @@ Media Managment Library for ActiveRecord and Carrierwave
 
 Easy way to link media (ie image, audio, video, pdf, ...) on other activerecords models
 
-Use branch rails2.3 for Rails 2.3.x and rails3 for Rails 3
+Use branch rails2.3 for Rails 2.3.x (gem install has_media -v=v0.1.3) 
 
-=== Create migrations
+Use branch rails3 for Rails 3 (gem install has_media)
 
-./script/generate has_media
+== Installation
+
+=== Rails 2.3.x
+
+see http://github.com/klacointe/has_media/tree/rails2.3
+
+=== Rails 3
+
+- gem install has_media
+- rails generate has_media:install
+
+The generator will create :
+- migration for activerecord
+- initializer for HasMedia configuration
+- locales files
+
+== Model and Uploaders
+
+You must defined model and uploader with the name given in the :only option
+
+Examples are in the /examples directory...
 
 == Usage
+
+Available methods are :
+* has_one_medium : Link to one medium
+* has_many_media : Link to many media
+
+Available options are :
+* only : restrict medium type to link on
+* encode : if false is given, set the encode status of this medium 
+  to NO_ENCODING instead of ENCODE_WAIT, default to true
+
+class MyModelWithMedia < ActiveRecord::Base
 
   has_one_medium  :image, :only => :image
   has_many_media  :images, :only => :image
@@ -22,35 +53,32 @@ Use branch rails2.3 for Rails 2.3.x and rails3 for Rails 3
 
   has_one_medium  :pdf, :encode => false
 
-== Model and Uploaders
-
-You must defined model and uploader with the name given in the only option
-Examples are in the /examples directory...
+end
 
 == Configuration
 
- * Configuration take place in config/initializers/has_media.rb
+Configuration take place in config/initializers/has_media.rb
 
- * Set the directory path to use to store media
+  # Set the directory path to use to store media
   HasMedia.directory_path = "media"
 
- * Set the base uri to access media
+  # Set the base uri to access media
   HasMedia.directory_uri = "/media"
 
- * Set custom error messages
+  # Set custom error messages
   HasMedia.errors_messages = {:type_error => I18n.t('has_media.errors.type_error')}
 
- * Set the allowed medium types for your application (used if no :only option given)
+  # Set the allowed medium types for your application (used if no :only option given)
   HasMedia.medium_types = [Image, Video, Audio]
 
- * Set the extension of encoded files to use for each medium types (used in file_uri and file_path)
+  # Set the extension of encoded files to use for each medium types (used in file_uri and file_path)
   HasMedia.encoded_extensions = {
     :image => 'png',
     :audio => 'ogg',
     :video => 'flv'
   }
 
- * Require you uploaders 
+  # Require you uploaders 
   Dir.glob(File.dirname(__FILE__) + '/../app/uploaders/*.rb').each do |uploader|
     require uploader
   end
@@ -68,7 +96,7 @@ Factory example using factory_girl :
     f.file {ActionController::TestUploadedFile.new(File.join(Rails.root, '/spec/factories/image.jpg'), 'image/jpeg')}
   end
 
-== TODO 
+== Todo
  * Doc for testing (ActionController::TestUploadedFile is now obsolete in rails 3), add HasMediaTestHelper with stub_temp_file method
  * Generator for initializer
  * Add controller and views examples with overload system (form fields, display, ...)
