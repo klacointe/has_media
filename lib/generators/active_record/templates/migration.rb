@@ -1,4 +1,4 @@
-class HasMedia < ActiveRecord::Migration
+class CreateHasMedia < ActiveRecord::Migration
   def self.up
     create_table :media do |t|
       t.integer  :width

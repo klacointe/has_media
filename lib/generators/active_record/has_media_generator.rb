@@ -9,7 +9,7 @@ module ActiveRecord
       source_root File.expand_path("../templates", __FILE__)
 
       def copy_has_media_migration
-        migration_template "migration.rb", "db/migrate/has_media"
+        migration_template "migration.rb", "db/migrate/create_has_media"
       end
 
       # Implement the required interface for Rails::Generators::Migration.
