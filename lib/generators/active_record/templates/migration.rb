@@ -12,6 +12,7 @@ class CreateHasMedia < ActiveRecord::Migration
       t.string   :type          # required
       t.string   :status
       t.string   :context       # required
+      t.string   :file          # used by carrierwave
       t.timestamps
     end
     add_index :media, :encode_status
