@@ -70,8 +70,13 @@ Configuration take place in config/initializers/has_media.rb
   # Set custom error messages
   HasMedia.errors_messages = {:type_error => I18n.t('has_media.errors.type_error')}
 
-  # Set the allowed medium types for your application (used if no :only option given)
-  HasMedia.medium_types = [Image, Video, Audio]
+  # Set the allowed medium types (used if no :only option given) for you application
+  # Set the allowed mime types for each medium type
+  HasMedia.medium_types = {
+    "Image" => ["image/jpeg", "image/png"],
+    "Video" => ["video/mp4"],
+    "Audio" => ["audio/mp3"]
+  }
 
   # Set the extension of encoded files to use for each medium types (used in file_uri and file_path)
   HasMedia.encoded_extensions = {
