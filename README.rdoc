@@ -85,6 +85,49 @@ Configuration take place in config/initializers/has_media.rb
     require uploader
   end
 
+== Encode with resque
+
+Just add a callback on media class you want to encode via resque.
+
+Example :
+
+file : app/models/my_model_with_media.rb
+
+  class MyModelWithMedia < ActiveRecord::Base
+    has_one_medium  :avatar, :only => :my_media
+  end
+
+file : app/models/my_media.rb
+
+  class MyMedia < Medium
+    mount_uploader :file, MyMediaUploader
+    after_save :enqueue_encoding
+
+    def enqueue_encoding
+      Resque.enqueue(EncodeMyMedia, File.join(Rails.root, self.original_file_path))
+    end
+  end
+
+file : resque/tasks/encode_my_media.rb
+
+  class EncodeMyMedia
+    @queue = :my_media
+    include Magick
+  
+    def self.perform(file)
+      img = Image.read(file).first
+      img.thumbnail(50, 50).write(file.gsub(/\.[^.]+$/, "") + "_thumb.png")
+    end 
+  end
+
+Then you can manage your media like this : 
+
+  @model = MyModelWithMedia.new
+  @model.avatar = File.open("my_file.jpg")
+  @model.save
+  @model.avatar.original_file_uri 	=> "/media/my_media/:id/my_file.jpg"
+  @model.avatar.file_uri('thumb') 	=> "/media/my_media/:id/my_file_thumb.jpg"
+
 == Testing
 
 Factory example using factory_girl :
