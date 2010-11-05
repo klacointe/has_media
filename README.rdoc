@@ -133,6 +133,10 @@ Then you can manage your media like this :
   @model.avatar.original_file_uri 	=> "/media/my_media/:id/my_file.jpg"
   @model.avatar.file_uri('thumb') 	=> "/media/my_media/:id/my_file_thumb.jpg"
 
+== Example application
+
+https://github.com/klacointe/has_media_example
+
 == Testing
 
 Factory example using factory_girl :
