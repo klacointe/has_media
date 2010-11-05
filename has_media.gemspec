@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{has_media}
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["klacointe", "spk"]
-  s.date = %q{2010-11-02}
+  s.date = %q{2010-11-05}
   s.description = %q{Media Managment Library for ActiveRecord and Carrierwave}
   s.email = %q{kevinlacointe@gmail.com}
   s.extra_rdoc_files = [
