@@ -8,50 +8,10 @@ module HasMedia
 
   VERSION = "0.0.1"
 
-  @@medium_types = []
+  @@medium_types = {}
   @@store_dir = '/tmp'
   @@directory_uri = ''
-  @@custom_models_path = nil
   @@errors_messages = {:type_error => 'Wrong type'}
-  @@images_content_types = [
-    'image/jpeg',
-    'image/pjpeg',
-    'image/jpg',
-    'image/gif',
-    'image/png',
-    'image/x-png',
-    'image/jpg',
-    'image/x-ms-bmp',
-    'image/bmp',
-    'image/x-bmp',
-    'image/x-bitmap',
-    'image/x-xbitmap',
-    'image/x-win-bitmap',
-    'image/x-windows-bmp',
-    'image/ms-bmp',
-    'application/bmp',
-    'application/x-bmp',
-    'application/x-win-bitmap',
-    'application/preview',
-    'image/jp_',
-    'application/jpg',
-    'application/x-jpg',
-    'image/pipeg',
-    'image/vnd.swiftview-jpeg',
-    'image/x-xbitmap',
-    'application/png',
-    'application/x-png',
-    'image/gi_',
-    'image/x-citrix-pjpeg'
-  ]
-  @@videos_content_types = [
-    'video/mpeg',
-    'video/mp4',
-    'video/quicktime',
-    'video/x-ms-wmv',
-    'video/x-flv',
-    'video/x-msvideo'
-  ]
   @@encoded_extensions = {
     :image => 'png',
     :audio => 'mp3',
@@ -82,24 +42,6 @@ module HasMedia
   end
   def self.directory_uri
     @@directory_uri
-  end
-  def self.custom_models_path
-    @@custom_models_path
-  end
-  def self.custom_models_path=(value)
-    unless value.blank?
-      @@custom_models_path = value
-      Dir.glob(self.custom_models_path + '/*.rb').each do |model|
-        require model
-      end
-    end
-  end
-  # taken from http://github.com/technoweenie/attachment_fu/blob/master/lib/technoweenie/attachment_fu.rb
-  def self.images_content_types
-    @@images_content_types
-  end
-  def self.videos_content_types
-    @@videos_content_types
   end
   def self.errors_messages
     @@errors_messages

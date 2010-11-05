@@ -15,21 +15,8 @@ class Medium < ActiveRecord::Base
   ENCODE_NOT_READY = 4
   NO_ENCODING      = 5
 
-  # Allowed MIME types for upload
-  # need custom configuration
-  # TODO: add errors if not type of file
-  @@mime_types = {
-    :video => HasMedia.videos_content_types,
-    :image => HasMedia.images_content_types,
-    :audio => ['audio/mpeg', 'audio/x-ms-wma', 'audio/x-wav'],
-    :flash => ['application/x-shockwave-flash'],
-    :pdf   => ['application/pdf'],
-  }
-
-  # TODO : check that carrierwave destroy files on after detroy hook
   after_destroy :remove_file_from_fs
   after_initialize  :set_default_encoding_status
-
 
   scope :with_context, lambda {|context|
     { :conditions => { :context => context.to_s} }
@@ -51,14 +38,12 @@ class Medium < ActiveRecord::Base
       mime_type = MIME::Types.type_for(value.path).first.content_type
     end
     only ||= ""
-    medium_types = HasMedia.medium_types
+    medium_types = HasMedia.medium_types.keys.collect{|c| Kernel.const_get(c)}
     if only != "" and klass = Kernel.const_get(only.camelize)
       medium_types = [klass]
     end
     klass = medium_types.find do |k|
-      if k.respond_to?(:handle_content_type?)
-        k.handle_content_type?(mime_type)
-      end
+      HasMedia.medium_types[k.to_s].include?(mime_type)
     end
     if klass.nil?
       object.media_errors = [HasMedia.errors_messages[:type_error]]

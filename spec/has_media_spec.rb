@@ -24,12 +24,17 @@ describe "HasMedia" do
   before :all do
     HasMedia.directory_path = 'tmp'
     HasMedia.directory_uri = '/media'
+    HasMedia.medium_types = {
+      "Image" => ["image/jpeg"],
+      "Audio" => ["audio/wav"],
+      "Pdf"   => ["application/pdf"],
+      "Video" => ["video/mp4"]
+    }
   end
 
   describe "fonctionalities" do
 
     before :each do
-      HasMedia.medium_types = [Image, Video, Pdf, Audio]
       @medium = MediumRelatedTest.new
       @image = stub_temp_file('image.jpg', 'image/jpeg')
       @audio = stub_temp_file('audio.wav', 'audio/wav')
@@ -180,7 +185,9 @@ describe "HasMedia" do
 
   describe "Configuration" do
     it "should check allowed medium types if no :only option given" do
-      HasMedia.medium_types = [Image]
+      HasMedia.medium_types = {
+        "Image" => ["image/jpeg"],
+      }
       @pdf = stub_temp_file('Conversational_Capital _Explained.pdf', 'application/pdf')
       @medium = MediumRelatedTest.new
       @medium.pdf = @pdf
@@ -189,8 +196,18 @@ describe "HasMedia" do
       @medium.save.should be_false
       @medium.errors.full_messages.include?(HasMedia.errors_messages[:type_error])
     end
-
-
+    it "should check allowed mime type" do
+      HasMedia.medium_types = {
+        "Pdf" => ["image/jpeg"],
+      }
+      @pdf = stub_temp_file('Conversational_Capital _Explained.pdf', 'application/pdf')
+      @medium = MediumRelatedTest.new
+      @medium.pdf = @pdf
+      @medium.valid?
+      @medium.should_not be_valid
+      @medium.save.should be_false
+      @medium.errors.full_messages.include?(HasMedia.errors_messages[:type_error])
+    end
   end
 
 end
