@@ -16,6 +16,7 @@ class MediumRelatedTest < ActiveRecord::Base
   has_many_media  :audios, :only => :audio
   has_one_medium  :image_no_encode, :only => :image, :encode => false
   has_one_medium  :pdf, :encode => false
+  has_one_medium  :document, :encode => false
 end
 
 
@@ -28,7 +29,8 @@ describe "HasMedia" do
       "Image" => ["image/jpeg"],
       "Audio" => ["audio/wav"],
       "Pdf"   => ["application/pdf"],
-      "Video" => ["video/mp4"]
+      "Video" => ["video/mp4"],
+      "Document"  => []
     }
   end
 
@@ -207,6 +209,27 @@ describe "HasMedia" do
       @medium.should_not be_valid
       @medium.save.should be_false
       @medium.errors.full_messages.include?(HasMedia.errors_messages[:type_error])
+    end
+    it "should allow to accept all mime types" do
+      HasMedia.medium_types = {
+        "Document" => [],
+      }
+      @pdf = stub_temp_file('Conversational_Capital _Explained.pdf', 'application/pdf')
+      @medium = MediumRelatedTest.new
+      @medium.document = @pdf
+      @medium.valid?
+      @medium.should be_valid
+      @medium.save.should be_true
+      @image = stub_temp_file('image.jpg', 'image/jpeg')
+      @medium.document = @image
+      @medium.valid?
+      @medium.should be_valid
+      @medium.save.should be_true
+      @audio = stub_temp_file('audio.wav', 'audio/wav')
+      @medium.document = @audio
+      @medium.valid?
+      @medium.should be_valid
+      @medium.save.should be_true
     end
   end
 
