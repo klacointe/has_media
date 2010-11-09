@@ -43,7 +43,7 @@ class Medium < ActiveRecord::Base
       medium_types = [klass]
     end
     klass = medium_types.find do |k|
-      HasMedia.medium_types[k.to_s].include?(mime_type)
+      HasMedia.medium_types[k.to_s].empty? || HasMedia.medium_types[k.to_s].include?(mime_type)
     end
     if klass.nil?
       object.media_errors = [HasMedia.errors_messages[:type_error]]
