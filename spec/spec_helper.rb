@@ -33,6 +33,7 @@ class TestMigration < ActiveRecord::Migration
       t.string  :filename
       t.integer :encode_status
       t.string  :type
+      t.string  :file
       t.timestamps
     end
     create_table :media_links, :force => true do |t|

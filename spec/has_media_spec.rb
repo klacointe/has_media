@@ -168,6 +168,26 @@ describe "HasMedia" do
                                                           @medium.image.filename)
     end
 
+    it "should define file_uri for custom versions" do
+      @medium.image = @image
+      @medium.save!
+      @medium.image.file_uri(:thumb).should == "/media/image/#{@medium.image.id}/image_thumb.png"
+      @medium.image.file_path(:thumb).should == "/tmp/image/#{@medium.image.id}/image_thumb.png"
+    end
+
+    it "should define file url for carrierwave versions" do
+      pending
+      @medium.image = @image
+      @medium.save!
+      @medium.image.file.thumb.url.should == "/media/image/#{@medium.image.id}/thumb_image.jpg"
+    end
+
+    it "should define file path for carrierwave versions" do
+      @medium.image = @image
+      @medium.save!
+      @medium.image.file.thumb.path.should == "/tmp/image/#{@medium.image.id}/thumb_image.jpg"
+    end
+
     it "pdf should exist" do
       @medium.pdf = @pdf
       @medium.save!
