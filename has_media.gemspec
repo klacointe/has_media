@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{has_media}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["klacointe", "spk"]
-  s.date = %q{2010-11-05}
+  s.date = %q{2010-11-09}
   s.description = %q{Media Managment Library for ActiveRecord and Carrierwave}
   s.email = %q{kevinlacointe@gmail.com}
   s.extra_rdoc_files = [
@@ -26,10 +26,12 @@ Gem::Specification.new do |s|
      "VERSION",
      "config/locales/en.yml",
      "examples/models/audio.rb",
+     "examples/models/document.rb",
      "examples/models/image.rb",
      "examples/models/pdf.rb",
      "examples/models/video.rb",
      "examples/uploaders/audio_uploader.rb",
+     "examples/uploaders/document_uploader.rb",
      "examples/uploaders/image_uploader.rb",
      "examples/uploaders/pdf_uploader.rb",
      "examples/uploaders/video_uploader.rb",
@@ -68,9 +70,11 @@ Gem::Specification.new do |s|
      "examples/uploaders/pdf_uploader.rb",
      "examples/uploaders/video_uploader.rb",
      "examples/uploaders/audio_uploader.rb",
+     "examples/uploaders/document_uploader.rb",
      "examples/models/image.rb",
      "examples/models/pdf.rb",
      "examples/models/audio.rb",
+     "examples/models/document.rb",
      "examples/models/video.rb"
   ]
 
