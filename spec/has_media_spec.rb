@@ -176,7 +176,6 @@ describe "HasMedia" do
     end
 
     it "should define file url for carrierwave versions" do
-      pending
       @medium.image = @image
       @medium.save!
       @medium.image.file.thumb.url.should == "/media/image/#{@medium.image.id}/thumb_image.jpg"
