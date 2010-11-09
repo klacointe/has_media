@@ -23,7 +23,7 @@ end
 describe "HasMedia" do
 
   before :all do
-    HasMedia.directory_path = 'tmp'
+    HasMedia.directory_path = '/tmp'
     HasMedia.directory_uri = '/media'
     HasMedia.medium_types = {
       "Image" => ["image/jpeg"],
