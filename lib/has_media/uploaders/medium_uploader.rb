@@ -13,7 +13,7 @@ class MediumUploader < CarrierWave::Uploader::Base
 
   # see https://gist.github.com/519484
   def root
-    CarrierWave.root
+    Rails.root
   end
 
 end
