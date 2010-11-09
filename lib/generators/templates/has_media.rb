@@ -1,4 +1,4 @@
-# Set the directory path to use to store media
+# Set the directory path to use to store media in public folder
 HasMedia.directory_path = "media"
 
 # Set the base uri to access media
