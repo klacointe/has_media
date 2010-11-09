@@ -109,7 +109,7 @@ file : app/models/my_media.rb
     after_save :enqueue_encoding
 
     def enqueue_encoding
-      Resque.enqueue(EncodeMyMedia, File.join(Rails.root, self.original_file_path))
+      Resque.enqueue(EncodeMyMedia, self.original_file_path)
     end
   end
 
