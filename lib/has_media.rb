@@ -6,6 +6,9 @@ require 'mime/types'
 
 module HasMedia
 
+  class Engine < Rails::Engine
+  end
+
   VERSION = "0.0.1"
 
   @@medium_types = {}
