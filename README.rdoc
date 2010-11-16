@@ -90,6 +90,15 @@ Configuration take place in config/initializers/has_media.rb
     require uploader
   end
 
+== Helpers
+
+Now you can use the has_media_field helper.
+
+  <%= form_for(@model, :html => {:multipart => true}) do |f| %>
+    <%= has_media_field @model, :context %>
+    <%= f.submit %>
+  <%- end %>
+
 == Generating views
 
 If you need to overload has_media views, just run : rails generate has_media:views
