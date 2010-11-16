@@ -1,0 +1,12 @@
+<%- klass = object.class.to_s.underscore %>
+<%- if object.send(context).is_a?(Array) %>
+  <p>
+    <%= label_tag "#{klass}[#{context}][]" %>
+    <%= file_field_tag "#{klass}[#{context}][]" %>
+  </p>
+<%- else %>
+  <p>
+    <%= label_tag "#{klass}[#{context}]" %>
+    <%= file_field_tag "#{klass}[#{context}]" %>
+  </p>
+<%- end %>
