@@ -90,6 +90,12 @@ Configuration take place in config/initializers/has_media.rb
     require uploader
   end
 
+== Generating views
+
+If you need to overload has_media views, just run : rails generate has_media:views
+
+This will copy has_media views in your application
+
 == Encode with resque
 
 Just add a callback on media class you want to encode via resque.

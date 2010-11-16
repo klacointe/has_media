@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["klacointe", "spk"]
-  s.date = %q{2010-11-09}
+  s.date = %q{2010-11-16}
   s.description = %q{Media Managment Library for ActiveRecord and Carrierwave}
   s.email = %q{kevinlacointe@gmail.com}
   s.extra_rdoc_files = [
@@ -24,6 +24,11 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "app/views/has_media/_media.html.erb",
+     "app/views/has_media/_media_fields.html.erb",
+     "app/views/has_media/_medium.html.erb",
+     "app/views/has_media/_medium_field.html.erb",
+     "app/views/has_media/destroy.js.erb",
      "config/locales/en.yml",
      "examples/models/audio.rb",
      "examples/models/document.rb",
@@ -36,9 +41,11 @@ Gem::Specification.new do |s|
      "examples/uploaders/pdf_uploader.rb",
      "examples/uploaders/video_uploader.rb",
      "has_media.gemspec",
+     "lib/carrierwave/uploader/url.rb",
      "lib/generators/active_record/has_media_generator.rb",
      "lib/generators/active_record/templates/migration.rb",
      "lib/generators/has_media/install_generator.rb",
+     "lib/generators/has_media/views_generator.rb",
      "lib/generators/templates/README",
      "lib/generators/templates/has_media.rb",
      "lib/has_media.rb",
