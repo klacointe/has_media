@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "app/controllers/media_controller.rb",
      "app/views/has_media/_media.html.erb",
      "app/views/has_media/_media_fields.html.erb",
      "app/views/has_media/_medium.html.erb",
