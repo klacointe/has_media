@@ -90,6 +90,12 @@ Configuration take place in config/initializers/has_media.rb
     require uploader
   end
 
+== Routes
+
+Add routes for media in your config/routes.rb
+
+  resources :media, :only => [:destroy]
+
 == Helpers
 
 Now you can use the has_media_field helper.
