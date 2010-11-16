@@ -1,8 +1,11 @@
 require 'rubygems'
+require 'rails'
 require 'active_record'
 require 'active_support'
 require 'carrierwave'
 require 'mime/types'
+$stderr.puts File.expand_path(File.dirname(__FILE__)) + '/../app/helpers/has_media_helper'
+require File.expand_path(File.dirname(__FILE__)) + '/../app/helpers/has_media_helper'
 
 module HasMedia
 
@@ -170,6 +173,9 @@ end
 
 class ActiveRecord::Base
   include HasMedia
+end
+class ActionController::Base
+  helper HasMediaHelper
 end
 
 require File.dirname(__FILE__) + '/has_media/uploaders/medium_uploader'
