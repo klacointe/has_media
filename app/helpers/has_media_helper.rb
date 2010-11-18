@@ -6,7 +6,11 @@ module HasMediaHelper
     context = opts[:context]||nil
     medium = opts[:medium]||nil
     if medium.nil?
-      "#{object.class.to_s.underscore}-#{context.to_s.underscore}-#{object.id}"
+      if object.nil? or object.new_record?
+        "#{object.class.to_s.underscore}-#{context.to_s.underscore}"
+      else
+        "#{object.class.to_s.underscore}-#{context.to_s.underscore}-#{object.id}"
+      end
     else
       "#{medium.class.to_s.underscore}-#{medium.id}"
     end
