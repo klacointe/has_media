@@ -4,7 +4,6 @@ require 'active_record'
 require 'active_support'
 require 'carrierwave'
 require 'mime/types'
-$stderr.puts File.expand_path(File.dirname(__FILE__)) + '/../app/helpers/has_media_helper'
 require File.expand_path(File.dirname(__FILE__)) + '/../app/helpers/has_media_helper'
 
 module HasMedia
