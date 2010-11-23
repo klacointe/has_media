@@ -24,3 +24,6 @@ HasMedia.directory_uri = "/media"
 Dir.glob(File.dirname(__FILE__) + '/../app/uploaders/*.rb').each do |uploader|
   require uploader
 end
+
+# Change CarrierWave root path
+CarrierWave.root = HasMedia.directory_path

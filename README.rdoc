@@ -90,6 +90,9 @@ Configuration take place in config/initializers/has_media.rb
     require uploader
   end
 
+  # Change CarrierWave root path
+  CarrierWave.root = HasMedia.directory_path
+
 == Routes
 
 Add routes for media in your config/routes.rb
