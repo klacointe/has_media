@@ -16,7 +16,7 @@ begin
     gem.homepage = "http://github.com/klacointe/has_media"
     gem.authors = ["klacointe", "spk"]
     gem.add_development_dependency "rspec", "~>2.0.0"
-    gem.add_dependency('carrierwave-rails3', '~>0.4.5')
+    gem.add_dependency('carrierwave', '~>0.5')
     gem.add_dependency('activerecord', '~>3.0.0')
     gem.add_dependency('activesupport', '~>3.0.0')
     gem.add_dependency('mime-types', '~>1.16')

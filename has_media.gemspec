@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{has_media}
-  s.version = "0.2.4"
+  s.version = "0.2.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["klacointe", "spk"]
-  s.date = %q{2010-11-16}
+  s.date = %q{2010-11-23}
   s.description = %q{Media Managment Library for ActiveRecord and Carrierwave}
   s.email = %q{kevinlacointe@gmail.com}
   s.extra_rdoc_files = [
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "app/controllers/media_controller.rb",
+     "app/helpers/has_media_helper.rb",
      "app/views/has_media/_media.html.erb",
      "app/views/has_media/_media_fields.html.erb",
      "app/views/has_media/_medium.html.erb",
@@ -92,20 +93,20 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, ["~> 2.0.0"])
-      s.add_runtime_dependency(%q<carrierwave-rails3>, ["~> 0.4.5"])
+      s.add_runtime_dependency(%q<carrierwave>, ["~> 0.5"])
       s.add_runtime_dependency(%q<activerecord>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<activesupport>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<mime-types>, ["~> 1.16"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.0.0"])
-      s.add_dependency(%q<carrierwave-rails3>, ["~> 0.4.5"])
+      s.add_dependency(%q<carrierwave>, ["~> 0.5"])
       s.add_dependency(%q<activerecord>, ["~> 3.0.0"])
       s.add_dependency(%q<activesupport>, ["~> 3.0.0"])
       s.add_dependency(%q<mime-types>, ["~> 1.16"])
     end
   else
     s.add_dependency(%q<rspec>, ["~> 2.0.0"])
-    s.add_dependency(%q<carrierwave-rails3>, ["~> 0.4.5"])
+    s.add_dependency(%q<carrierwave>, ["~> 0.5"])
     s.add_dependency(%q<activerecord>, ["~> 3.0.0"])
     s.add_dependency(%q<activesupport>, ["~> 3.0.0"])
     s.add_dependency(%q<mime-types>, ["~> 1.16"])
