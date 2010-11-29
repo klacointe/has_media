@@ -22,15 +22,6 @@ class Medium < ActiveRecord::Base
     { :conditions => { :context => context.to_s} }
   }
 
-  def self.sanitize(name)
-    name = name.gsub("\\", "/") # work-around for IE
-    name = File.basename(name)
-    name = name.gsub(/[^a-zA-Z0-9\.\-\+_]/,"_")
-    name = "_#{name}" if name =~ /\A\.+\z/
-    name = "unnamed" if name.size == 0
-    return name.downcase
-  end
-
   def self.new_from_value(object, value, context, encode, only)
     if value.respond_to?(:content_type)
       mime_type = value.content_type
@@ -51,9 +42,9 @@ class Medium < ActiveRecord::Base
     end
     medium = klass.new
     if value.respond_to?(:original_filename)
-      medium.filename = self.sanitize(value.original_filename)
+      medium.filename = HasMedia.sanitize_file_name(value.original_filename)
     else
-      medium.filename = self.sanitize(File.basename(value.path))
+      medium.filename = HasMedia.sanitize_file_name(File.basename(value.path))
     end
     medium.file = value
     medium.content_type = mime_type
@@ -116,6 +107,13 @@ class Medium < ActiveRecord::Base
     File.join(directory_uri, encoded_file_name(version))
   end
 
+  ##
+  # encoded_file_name
+  # Return the encoded file name for a medium
+  # This use the HasMedia.encoded_extensions configuration
+  # 
+  # @param [String] version, the string identifier for a specific encoded version
+  #
   def encoded_file_name(version = nil)
     # remove original extension and add the encoded extension
     final_name = filename.gsub(/\.[^.]{1,4}$/, "") + '.' + file_extension
@@ -130,10 +128,25 @@ class Medium < ActiveRecord::Base
               self.id.to_s)
   end
 
+  ##
+  # file_exists?
+  # Is the medium for the current format exists
+  #
+  # @param [String] version to test
+  #
+  # @return [Boolean]
+  #
   def file_exists?(thumbnail = nil)
     File.exist?(File.join(Rails.root, 'public', file_uri(thumbnail)))
   end
 
+  ##
+  # file_extension
+  # Return the file extension for the current medium type
+  # This use the HasMedia.encoded_extensions configuration
+  #
+  # @return [String]
+  #
   def file_extension
     sym = type.underscore.to_sym
     unless HasMedia.encoded_extensions.keys.include?(sym)
@@ -145,14 +158,15 @@ class Medium < ActiveRecord::Base
 private
 
   ##
+  # set_default_encoding_status
   # Set encode_status value to notify the encoder of a new file
   def set_default_encoding_status
     self.encode_status = ENCODE_NOT_READY if filename_changed?
   end
 
   ##
+  # remove_file_from_fs
   # Unlink the folder containing the files
-  # TODO : remove all files, not only the original one
   def remove_file_from_fs
     require 'fileutils'
     FileUtils.rm_rf(self.directory_path)

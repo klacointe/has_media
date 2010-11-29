@@ -24,30 +24,86 @@ module HasMedia
     :video => 'flv'
   }
 
+  ##
+  # medium_types
+  #
+  # Used to configure available medium types
+  #
+  # Each medium type id representing with its class name and contain an Array
+  # of possible mime types. An empty Array means no limitation on mime type
+  #
+  # Example : 
+  #  HasMedia.medium_types = {
+  #    "Image" => ["image/jpeg", "image/png"],
+  #    "Video" => ["video/mp4"],
+  #    "Audio" => ["audio/mp3"],
+  #    "Document" => []
+  #  }
+  #
   def self.medium_types=(value)
     @@medium_types = value
   end
   def self.medium_types
     @@medium_types
   end
+
+  ##
+  # encoded_extensions
+  #
+  # Used to configure output format if you use a custom encoder
+  #
+  # Example :
+  #  HasMedia.encoded_extensions = {
+  #    :image => 'png',
+  #    :audio => 'ogg',
+  #    :video => 'flv'
+  #  }
+  #
   def self.encoded_extensions=(value)
     @@encoded_extensions = value
   end
   def self.encoded_extensions
     @@encoded_extensions
   end
+
+  ##
+  # directory_path
+  #
+  # Used to configure directory_path to store media on filesystem
+  #
+  # Example :
+  #   HasMedia.directory_path = Rails.root + "media"
+  #
   def self.directory_path=(value)
     @@store_dir = value
   end
   def self.directory_path
     @@store_dir
   end
+
+  ##
+  # directory_uri
+  #
+  # Used to store www access to your media
+  #
+  # Example :
+  #   HasMedia.directory_path = Rails.root + "media"
+  #
   def self.directory_uri=(value)
     @@directory_uri = value
   end
   def self.directory_uri
     @@directory_uri
   end
+
+  ##
+  # errors_messages
+  #
+  # Used to store custom error messages
+  #
+  # Example :
+  #   HasMedia.errors_messages = {:type_error => "Le format du logo n'est pas correct"}
+  #
   def self.errors_messages
     @@errors_messages
   end
@@ -59,20 +115,54 @@ module HasMedia
     mod.extend ClassMethods
   end
 
+  ##
+  # Sanitize file name
+  # @param [String] name
+  # @return [String]
+  #
+  def self.sanitize_file_name(name)
+    name = name.gsub("\\", "/") # work-around for IE
+    name = File.basename(name)
+    name = name.gsub(/[^a-zA-Z0-9\.\-\+_]/,"_")
+    name = "_#{name}" if name =~ /\A\.+\z/
+    name = "unnamed" if name.size == 0
+    return name.downcase
+  end
+
+
   module ClassMethods
 
+    ##
+    # has_one_medium 
+    # Define a class method to link to a medium
+    #
+    # @param [String] context, the context (or accessor) to link medium
+    # @param [Hash]   options, can be one of : encode, only
+    #
     def has_one_medium(context, options = {})
       set_relations(context, :has_one)
       set_general_methods
       create_one_accessors(context, options)
     end
 
+    ##
+    # has_many_media
+    # Define a class method to link to several media
+    #
+    # @param [String] context, the context (or accessor) to link media
+    # @param [Hash]   options, can be one of : encode, only
+    #
     def has_many_media(context, options = {})
       set_relations(context, :has_many)
       set_general_methods
       create_many_accessors(context, options)
     end
 
+    ##
+    # set_general_methods
+    # Add generic methods for has_one_medium and has_many_media
+    # Including media_links relation, accessors, callbacks, validation ...
+    #
     def set_general_methods
       @methods_present ||= false
       unless @methods_present
@@ -84,6 +174,14 @@ module HasMedia
       @methods_present = true
     end
 
+    ##
+    # set_relations
+    # add relation on medium if not exists
+    # Also check if a class has a duplicate context
+    #
+    # @param [String] context
+    # @param [String] relation type, one of :has_many, :has_one
+    #
     def set_relations(context, relation)
       @contexts ||= {}
       @contexts[relation] ||= []
@@ -98,13 +196,30 @@ module HasMedia
       @media_relation_set << self
     end
 
+    ##
+    # set_callbacks
+    # Add callbacks to :
+    #   - merge medium errors to class related errors
+    #   - destroy medium
+    #
     def set_callbacks
       validate :merge_media_errors
       before_save :remove_old_media
     end
+
+    ##
+    # set_attributes
+    # Add media_errors attributes to store medium errors
+    #
     def set_attributes
       attr_accessor :media_errors
     end
+
+    ##
+    # set_validate_methods
+    # Define merge_media_errors to merge medium errors with errors given
+    # on master object.
+    #
     def set_validate_methods
       module_eval <<-"end;", __FILE__, __LINE__
         def merge_media_errors
@@ -115,15 +230,22 @@ module HasMedia
         end
       end;
     end
-
+    
+    ##
+    # set_media_links_relation
+    # Declare media_links relation 
     def set_media_links_relation
       has_many :media_links, :as => :mediated, :dependent => :destroy
     end
 
+    ##
+    # create_one_accessors
+    # Create needed accessors on master object for unique relation
+    #
+    # @param [String] context
+    # @param [Hash]   options
+    #
     def create_one_accessors(context, options)
-      #check_conditions = ''
-      #check_conditions << "return unless medium.is_a? #{options[:only].to_s.capitalize}" if options.has_key? :only
-
       define_method(context) do
         media.with_context(context.to_sym).first
       end
@@ -141,10 +263,14 @@ module HasMedia
       end;
     end
 
+    ##
+    # create_many_accessors
+    # Create needed accessors on master object for multiple relation
+    #
+    # @param [String] context
+    # @param [Hash]   options
+    #
     def create_many_accessors(context, options)
-      #check_conditions = ''
-      #check_conditions << "return unless medium.is_a? #{options[:only].to_s.capitalize}" if options.has_key? :only
-
       define_method(context.to_s.pluralize) do
         media.with_context(context.to_sym).uniq
       end
@@ -162,6 +288,9 @@ module HasMedia
     end
   end
 
+  ##
+  # Remove old media before saving
+  #
   def remove_old_media
     (@old_media || []).each do |medium|
       medium.destroy if medium
@@ -170,18 +299,22 @@ module HasMedia
 
 end
 
+# Include HasMedia in all ActiveRecord::Base Object
 class ActiveRecord::Base
   include HasMedia
 end
+# Include HasMediaHelper in all ActiveRecord::Base Object
 class ActionController::Base
   helper HasMediaHelper
 end
 
+# Require generic medium uploader
 require File.dirname(__FILE__) + '/has_media/uploaders/medium_uploader'
 Dir.glob(File.dirname(__FILE__) + '/has_media/uploaders/*.rb').each do |uploader|
   require uploader
 end
 
+# Require generic medium model
 require File.dirname(__FILE__) + '/has_media/models/medium'
 Dir.glob(File.dirname(__FILE__) + '/has_media/models/*.rb').each do |model|
   require model

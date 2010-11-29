@@ -34,7 +34,7 @@ describe "HasMedia" do
     }
   end
 
-  describe "fonctionalities" do
+  describe "basic fonctionalities" do
 
     before :each do
       @medium = MediumRelatedTest.new
@@ -202,9 +202,73 @@ describe "HasMedia" do
       @medium.save.should be_false
       @medium.errors.full_messages.include?(HasMedia.errors_messages[:type_error])
     end
+
+    it "should sanitize filename" do
+      @pdf = stub_temp_file('Conversational_Capital _Explained.pdf', 'application/pdf')
+      @medium = MediumRelatedTest.new
+      @medium.pdf = @pdf
+      @medium.save
+      @medium.pdf.filename.should == "conversational_capital__explained.pdf"
+      @medium.pdf.original_file_uri.should == "/media/pdf/#{@medium.pdf.id}/conversational_capital__explained.pdf"
+    end
   end
 
   describe "Configuration" do
+
+    it "should configure medium_types" do
+      old_conf = HasMedia.medium_types
+      HasMedia.medium_types = {
+        "Image" => ["image/jpeg"]
+      }
+      HasMedia.medium_types.should == {
+        "Image" => ["image/jpeg"]
+      }
+      HasMedia.medium_types = old_conf
+    end
+
+    it "should configure encoded_extensions" do
+      old_conf = HasMedia.encoded_extensions
+      HasMedia.encoded_extensions = {
+        :image => "png"
+      }
+      HasMedia.encoded_extensions.should == {
+        :image => "png"
+      }
+      HasMedia.encoded_extensions = old_conf
+    end
+
+    it "should configure directory_path" do
+      old_conf = HasMedia.directory_path
+      HasMedia.directory_path = "/tmp"
+      HasMedia.directory_path.should == "/tmp"
+      HasMedia.directory_path = old_conf
+    end
+
+    it "should configure directory_uri" do
+      old_uri = HasMedia.directory_uri
+      HasMedia.directory_uri = "/tmp"
+      HasMedia.directory_uri.should == "/tmp"
+      HasMedia.directory_uri = old_uri
+    end
+
+    it "should configure/merge errors_messages" do
+      old_conf = HasMedia.errors_messages
+      HasMedia.errors_messages = {
+        :type_error => "wtf?"
+      }
+      HasMedia.errors_messages.should == {
+        :type_error => "wtf?"
+      }
+      HasMedia.errors_messages = {
+        :another_error => "warning!"
+      }
+      HasMedia.errors_messages.should == {
+        :type_error => "wtf?",
+        :another_error => "warning!"
+      }
+      HasMedia.errors_messages = old_conf
+    end
+
     it "should check allowed medium types if no :only option given" do
       HasMedia.medium_types = {
         "Image" => ["image/jpeg"],
