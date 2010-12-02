@@ -113,7 +113,7 @@ class Medium < ActiveRecord::Base
   # This use the HasMedia.encoded_extensions configuration
   # 
   # @param [String] version, the string identifier for a specific encoded version
-  #
+  # FIXME duplicate with HasMedia::sanitize_file_name
   def encoded_file_name(version = nil)
     # remove original extension and add the encoded extension
     final_name = filename.gsub(/\.[^.]{1,4}$/, "") + '.' + file_extension
