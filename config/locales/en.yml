@@ -2,3 +2,6 @@ en:
   has_media:
     errors:
       type_error: "File type error"
+    form:
+      add_link: "Add %{medium_label}"
+      remove_link: "Remove"
