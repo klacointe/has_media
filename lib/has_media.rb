@@ -225,7 +225,7 @@ module HasMedia
         def merge_media_errors
           self.media_errors ||= []
           self.media_errors.each do |error|
-            self.errors.add_to_base(error)
+            self.errors.add(:base, error)
           end
         end
       end;
