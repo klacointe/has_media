@@ -1,13 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-# load models and uploaders examples
-Dir.glob(File.dirname(__FILE__) + '/../examples/uploaders/*.rb').each do |uploader|
-  require uploader
-end
-
-Dir.glob(File.dirname(__FILE__) + '/../examples/models/*.rb').each do |model|
-  require model
-end
 class MediumRelatedTest < ActiveRecord::Base
   include HasMedia
   has_one_medium  :image, :only => :image
@@ -18,7 +10,6 @@ class MediumRelatedTest < ActiveRecord::Base
   has_one_medium  :pdf, :encode => false
   has_one_medium  :document, :encode => false
 end
-
 
 describe "HasMedia" do
 

@@ -9,6 +9,13 @@ require 'action_controller'
 require 'action_dispatch'
 require 'action_dispatch/testing/test_process'
 require 'has_media'
+# load models and uploaders examples
+Dir.glob(File.dirname(__FILE__) + '/../examples/uploaders/*.rb').each do |uploader|
+  require uploader
+end
+Dir.glob(File.dirname(__FILE__) + '/../examples/models/*.rb').each do |model|
+  require model
+end
 
 dbconfig = {
   :adapter => 'sqlite3',
@@ -54,15 +61,10 @@ RSpec.configure do |c|
   c.before(:all) do
     TestMigration.up
   end
-  c.before(:each) do
-    @real_world = RSpec.world
-    RSpec.instance_variable_set(:@world, RSpec::Core::World.new)
-  end
   c.after(:all) do
     TestMigration.down
   end
   c.after(:each) do
-    RSpec.instance_variable_set(:@world, @real_world)
     Medium.destroy_all
     MediaLink.destroy_all
     MediumRelatedTest.destroy_all

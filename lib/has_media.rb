@@ -4,14 +4,28 @@ require 'active_record'
 require 'active_support'
 require 'carrierwave'
 require 'mime/types'
-require File.expand_path(File.dirname(__FILE__)) + '/../app/helpers/has_media_helper'
+require 'has_media'
+
+autoload :Medium,         "has_media/models/medium"
+autoload :MediaLink,      "has_media/models/media_link"
+autoload :MediumUploader, "has_media/uploaders/medium_uploader"
 
 module HasMedia
 
   class Engine < Rails::Engine
-  end
 
-  VERSION = "0.0.1"
+    initializer 'has_media.initializer' do |app|
+      # Include HasMedia in all ActiveRecord::Base Object
+      class ActiveRecord::Base
+        include HasMedia
+      end
+      # Include HasMediaHelper in all ActiveRecord::Base Object
+      class ActionController::Base
+        helper HasMediaHelper
+      end
+    end
+
+  end
 
   @@medium_types = {}
   @@store_dir = '/tmp'
@@ -299,23 +313,3 @@ module HasMedia
 
 end
 
-# Include HasMedia in all ActiveRecord::Base Object
-class ActiveRecord::Base
-  include HasMedia
-end
-# Include HasMediaHelper in all ActiveRecord::Base Object
-class ActionController::Base
-  helper HasMediaHelper
-end
-
-# Require generic medium uploader
-require File.dirname(__FILE__) + '/has_media/uploaders/medium_uploader'
-Dir.glob(File.dirname(__FILE__) + '/has_media/uploaders/*.rb').each do |uploader|
-  require uploader
-end
-
-# Require generic medium model
-require File.dirname(__FILE__) + '/has_media/models/medium'
-Dir.glob(File.dirname(__FILE__) + '/has_media/models/*.rb').each do |model|
-  require model
-end
