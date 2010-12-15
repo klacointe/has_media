@@ -1,3 +1,4 @@
 class Image < Medium
-  raise "this exception is normal, useful for testing"
+  set_table_name 'media'
+  mount_uploader :file, ImageUploader
 end
