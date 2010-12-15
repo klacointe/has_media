@@ -1,65 +1,29 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
 require 'rubygems'
 require 'rspec'
 require 'rspec/core'
 require 'rspec/core/rake_task'
-require 'action_controller'
-#require 'action_controller/test_process'
+
 require 'action_dispatch'
 require 'action_dispatch/testing/test_process'
+
 require 'has_media'
-# load models and uploaders examples
-Dir.glob(File.dirname(__FILE__) + '/../examples/uploaders/*.rb').each do |uploader|
-  require uploader
-end
-Dir.glob(File.dirname(__FILE__) + '/../examples/models/*.rb').each do |model|
-  require model
-end
 
-dbconfig = {
-  :adapter => 'sqlite3',
-  :database => ':memory:',
-#  :database => 'has_media.sqlite'
-}
-
-ActiveRecord::Base.establish_connection(dbconfig)
-ActiveRecord::Migration.verbose = false
-#ActiveRecord::Base.logger = Logger.new(STDOUT)
-class TestMigration < ActiveRecord::Migration
-  def self.up
-    create_table :medium_related_tests, :force => true do |t|
-      t.string :name
-    end
-    create_table :prouts, :force => true do |t|
-      t.string :name
-    end
-    create_table :media, :force => true do |t|
-      t.string  :context
-      t.string  :content_type
-      t.string  :filename
-      t.integer :encode_status
-      t.string  :type
-      t.string  :file
-      t.timestamps
-    end
-    create_table :media_links, :force => true do |t|
-      t.integer :medium_id
-      t.integer :mediated_id
-      t.string  :mediated_type
-      t.timestamps
-    end
-  end
-  def self.down
-    drop_table :medium_related_tests
-    drop_table :media
-    drop_table :media_links
-  end
-end
+require 'db_helper'
+require 'temp_file_helper'
 
 RSpec.configure do |c|
   c.before(:all) do
     TestMigration.up
+    # load models and uploaders fixtures
+    Dir.glob(File.dirname(__FILE__) + '/fixtures/uploaders/*.rb').each do |uploader|
+      require uploader
+    end
+    Dir.glob(File.dirname(__FILE__) + '/fixtures/models/*.rb').each do |model|
+      require model
+    end
   end
   c.after(:all) do
     TestMigration.down
@@ -72,22 +36,3 @@ RSpec.configure do |c|
 end
 
 
-def file_path( *paths )
-  File.expand_path(File.join(File.dirname(__FILE__), 'fixtures', 'media', *paths))
-end
-
-def stub_temp_file(filename, mime_type=nil, fake_name=nil)
-  raise "#{file_path(filename)} file does not exist" unless File.exist?(file_path(filename))
-
-  t = Tempfile.new(filename)
-  FileUtils.copy_file(file_path(filename), t.path)
-
-  # This is stupid, but for some reason rspec won't play nice...
-  eval <<-EOF
-def t.original_filename; '#{fake_name || filename}'; end
-def t.content_type; '#{mime_type}'; end
-def t.local_path; path; end
-  EOF
-
-  return t
-end
