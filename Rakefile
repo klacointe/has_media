@@ -1,11 +1,3 @@
-#require 'rake'
-#require 'rake/rdoctask'
-#require 'rubygems'
-#require 'rspec'
-#require 'rspec/core'
-#require 'rspec/core/rake_task'
-#Spec::Core::RakeTask.new(:spec)
-
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
@@ -25,27 +17,3 @@ begin
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
-
-#Spec::Rake::SpecTask.new(:spec) do |spec|
-#  spec.libs << 'lib' << 'spec'
-#  spec.spec_files = FileList['spec/**/*_spec.rb']
-#end
-#
-#Spec::Rake::SpecTask.new(:rcov) do |spec|
-#  spec.libs << 'lib' << 'spec'
-#  spec.pattern = 'spec/**/*_spec.rb'
-#  spec.rcov = true
-#end
-#
-#task :spec => :check_dependencies
-#
-#task :default => :spec
-#
-#Rake::RDocTask.new do |rdoc|
-#  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-#
-#  rdoc.rdoc_dir = 'rdoc'
-#  rdoc.title = "has_media #{version}"
-#  rdoc.rdoc_files.include('README*')
-#  rdoc.rdoc_files.include('lib/**/*.rb')
-#end
