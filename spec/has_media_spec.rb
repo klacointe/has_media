@@ -25,6 +25,10 @@ describe "HasMedia" do
     }
   end
 
+  it "HasMedia is a module" do
+    HasMedia.class.should be(Module)
+  end
+
   describe "basic fonctionalities" do
 
     before :each do
