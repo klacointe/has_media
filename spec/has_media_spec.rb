@@ -50,19 +50,19 @@ describe "HasMedia" do
     end
 
     it "should define accessors" do
-      @medium.methods.should include(:image)
-      @medium.methods.should include(:images)
-      @medium.methods.should include(:audio)
-      @medium.methods.should include(:audios)
-      @medium.methods.should include(:pdf)
+      @medium.methods.map{|m| m.to_sym}.should include(:image)
+      @medium.methods.map{|m| m.to_sym}.should include(:images)
+      @medium.methods.map{|m| m.to_sym}.should include(:audio)
+      @medium.methods.map{|m| m.to_sym}.should include(:audios)
+      @medium.methods.map{|m| m.to_sym}.should include(:pdf)
     end
 
     it "should define setters" do
-      @medium.methods.should include(:image=)
-      @medium.methods.should include(:images=)
-      @medium.methods.should include(:audio=)
-      @medium.methods.should include(:audios=)
-      @medium.methods.should include(:pdf=)
+      @medium.methods.map{|m| m.to_sym}.should include(:image=)
+      @medium.methods.map{|m| m.to_sym}.should include(:images=)
+      @medium.methods.map{|m| m.to_sym}.should include(:audio=)
+      @medium.methods.map{|m| m.to_sym}.should include(:audios=)
+      @medium.methods.map{|m| m.to_sym}.should include(:pdf=)
     end
 
     it "should associate image to mediated object" do
