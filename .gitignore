@@ -17,8 +17,9 @@ tmtags
 coverage
 rdoc
 pkg
+.bundle
 
 ## PROJECT::SPECIFIC
 uploads
 doc
-test/dummy/log/
+spec/dummy/log/
