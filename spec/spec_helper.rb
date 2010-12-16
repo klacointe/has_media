@@ -1,21 +1,55 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+# Configure Rails Envinronment
+ENV["RAILS_ENV"] = "test"
 
-require 'rubygems'
-require 'rspec'
-require 'rspec/core'
-require 'rspec/core/rake_task'
+require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+require "rails/test_help"
+require "rspec/rails"
 
-require 'action_dispatch'
-require 'action_dispatch/testing/test_process'
+ActionMailer::Base.delivery_method = :test
+ActionMailer::Base.perform_deliveries = true
+ActionMailer::Base.default_url_options[:host] = "test.com"
 
-require 'has_media'
+Rails.backtrace_cleaner.remove_silencers!
+
+# Configure capybara for integration testing
+require "capybara/rails"
+Capybara.default_driver   = :rack_test
+Capybara.default_selector = :css
+
+# Run any available migration
+ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
+
+# Load support files
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+
+
+#$LOAD_PATH.unshift(File.dirname(__FILE__))
+#$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+#
+#require 'rubygems'
+#require 'rspec'
+#require 'rspec/core'
+#require 'rspec/core/rake_task'
+#
+#require 'action_dispatch'
+#require 'action_dispatch/testing/test_process'
+#
+#require 'has_media'
 
 require 'db_helper'
 require 'temp_file_helper'
 
-RSpec.configure do |c|
-  c.before(:all) do
+RSpec.configure do |config|
+
+  # Remove this line if you don't want RSpec's should and should_not
+  # methods or matchers
+  require 'rspec/expectations'
+  config.include RSpec::Matchers
+
+  # == Mock Framework
+  config.mock_with :rspec
+
+  config.before(:all) do
     TestMigration.up
     # load models and uploaders fixtures
     Dir.glob(File.dirname(__FILE__) + '/fixtures/uploaders/*.rb').each do |uploader|
@@ -25,10 +59,12 @@ RSpec.configure do |c|
       require model
     end
   end
-  c.after(:all) do
+
+  config.after(:all) do
     TestMigration.down
   end
-  c.after(:each) do
+
+  config.after(:each) do
     Medium.destroy_all
     MediaLink.destroy_all
     MediumRelatedTest.destroy_all

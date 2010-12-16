@@ -1,0 +1,631 @@
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (115.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (76.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.3ms)[0m  CREATE TABLE "medium_related_tests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE TABLE "media" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "context" varchar(255), "content_type" varchar(255), "filename" varchar(255), "encode_status" integer, "type" varchar(255), "file" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE TABLE "media_links" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "medium_id" integer, "mediated_id" integer, "mediated_type" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mDROP TABLE "medium_related_tests"[0m
+  [1m[35mSQL (0.1ms)[0m  DROP TABLE "media"
+  [1m[36mSQL (0.1ms)[0m  [1mDROP TABLE "media_links"[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE TABLE "medium_related_tests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) [0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE TABLE "media" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "context" varchar(255), "content_type" varchar(255), "filename" varchar(255), "encode_status" integer, "type" varchar(255), "file" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE TABLE "media_links" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "medium_id" integer, "mediated_id" integer, "mediated_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  DROP TABLE "medium_related_tests"
+  [1m[36mSQL (0.1ms)[0m  [1mDROP TABLE "media"[0m
+  [1m[35mSQL (0.1ms)[0m  DROP TABLE "media_links"
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.3ms)[0m  CREATE TABLE "medium_related_tests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE TABLE "media" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "context" varchar(255), "content_type" varchar(255), "filename" varchar(255), "encode_status" integer, "type" varchar(255), "file" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE TABLE "media_links" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "medium_id" integer, "mediated_id" integer, "mediated_type" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.1ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.0ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.0ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.1ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:29.879747', '2010-12-16 07:41:29.879747')
+  [1m[36mMedium Load (0.3ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (1, 1, 'MediumRelatedTest', '2010-12-16 07:41:29.977820', '2010-12-16 07:41:29.977820')[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 1 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "media_links" SET "created_at" = '2010-12-16 07:41:29.977820', "updated_at" = '2010-12-16 07:41:29.977820' WHERE ("media_links"."id" = 1)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 1) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 1)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 1)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 1) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 1)[0m
+  [1m[35mAREL (0.0ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 1)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 1)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.1ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 1) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 1 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.0ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 1)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('audio', 'audio/wav', 'audio.wav', 0, 'Audio', 'audio.wav', '2010-12-16 07:41:30.044048', '2010-12-16 07:41:30.044048')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audio')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (2, 2, 'MediumRelatedTest', '2010-12-16 07:41:30.088957', '2010-12-16 07:41:30.088957')
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 2 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.088957', "updated_at" = '2010-12-16 07:41:30.088957' WHERE ("media_links"."id" = 2)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 2) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audio') LIMIT 1[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 2)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 2)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 2) LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 2)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Audio') AND ("media"."id" = 2)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Audio') AND ("media"."id" = 2)
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 2) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 2 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 2)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('pdf', 'application/pdf', 'conversational_capital__explained.pdf', 5, 'Pdf', 'conversational_capital__explained.pdf', '2010-12-16 07:41:30.115666', '2010-12-16 07:41:30.115666')
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'pdf')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (3, 3, 'MediumRelatedTest', '2010-12-16 07:41:30.124357', '2010-12-16 07:41:30.124357')[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 3 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.124357', "updated_at" = '2010-12-16 07:41:30.124357' WHERE ("media_links"."id" = 3)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 3) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'pdf') LIMIT 1
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 3)
+  [1m[36mAREL (0.0ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 3)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 3) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 3)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Pdf') AND ("media"."id" = 3)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Pdf') AND ("media"."id" = 3)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.1ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 3) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 3 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.0ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 3)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:30.160821', '2010-12-16 07:41:30.160821')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('audio', 'audio/wav', 'audio.wav', 0, 'Audio', 'audio.wav', '2010-12-16 07:41:30.168045', '2010-12-16 07:41:30.168045')[0m
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audio')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (4, 4, 'MediumRelatedTest', '2010-12-16 07:41:30.219296', '2010-12-16 07:41:30.219296')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (5, 4, 'MediumRelatedTest', '2010-12-16 07:41:30.220624', '2010-12-16 07:41:30.220624')[0m
+  [1m[35mMediaLink Load (0.2ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 4 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.219296', "updated_at" = '2010-12-16 07:41:30.219296' WHERE ("media_links"."id" = 4)[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.220624', "updated_at" = '2010-12-16 07:41:30.220624' WHERE ("media_links"."id" = 5)
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 4) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audio') LIMIT 1[0m
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 4) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 4)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 4)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 4) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 4)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 4)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 4)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 5)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 5)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 5) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 5)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Audio') AND ("media"."id" = 5)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Audio') AND ("media"."id" = 5)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.2ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 4) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 4 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 4)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image_bis.jpg', 0, 'Image', 'image_bis.jpg', '2010-12-16 07:41:30.275522', '2010-12-16 07:41:30.275522')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (6, 5, 'MediumRelatedTest', '2010-12-16 07:41:30.282549', '2010-12-16 07:41:30.282549')
+  [1m[36mMediaLink Load (0.2ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 5 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.282549', "updated_at" = '2010-12-16 07:41:30.282549' WHERE ("media_links"."id" = 6)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 5) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 5) LIMIT 1
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:30.310148', '2010-12-16 07:41:30.310148')[0m
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 5) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (7, 5, 'MediumRelatedTest', '2010-12-16 07:41:30.315118', '2010-12-16 07:41:30.315118')[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 6)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 6)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 6) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 6)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 6)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 6)[0m
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 5) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 7)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 7)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 7) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 7)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 7)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 7)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.2ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 5) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 5 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 5)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:30.410376', '2010-12-16 07:41:30.410376')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (8, 6, 'MediumRelatedTest', '2010-12-16 07:41:30.417355', '2010-12-16 07:41:30.417355')
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 6 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.417355', "updated_at" = '2010-12-16 07:41:30.417355' WHERE ("media_links"."id" = 8)
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 6) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 8)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 8)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 8) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 8)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 8)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 8)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 8)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 8) LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 6)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.1ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:30.460927', '2010-12-16 07:41:30.460927')
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (9, 7, 'MediumRelatedTest', '2010-12-16 07:41:30.467748', '2010-12-16 07:41:30.467748')[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 7 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.467748', "updated_at" = '2010-12-16 07:41:30.467748' WHERE ("media_links"."id" = 9)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 7) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 9)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 9)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 9) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 9)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 9)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 9)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.2ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 7) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 7 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 7)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('audio', 'audio/wav', 'audio.wav', 0, 'Audio', 'audio.wav', '2010-12-16 07:41:30.489972', '2010-12-16 07:41:30.489972')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audio')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (10, 8, 'MediumRelatedTest', '2010-12-16 07:41:30.496189', '2010-12-16 07:41:30.496189')
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 8 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.496189', "updated_at" = '2010-12-16 07:41:30.496189' WHERE ("media_links"."id" = 10)
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 8) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audio') LIMIT 1[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 10)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 10)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 10) LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 10)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Audio') AND ("media"."id" = 10)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Audio') AND ("media"."id" = 10)
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 8) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 8 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 8)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 9) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'images')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 9) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 9 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 9)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 10) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audios')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 10) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 10 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 10)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:30.597889', '2010-12-16 07:41:30.597889')
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (11, 11, 'MediumRelatedTest', '2010-12-16 07:41:30.605195', '2010-12-16 07:41:30.605195')[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 11 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.605195', "updated_at" = '2010-12-16 07:41:30.605195' WHERE ("media_links"."id" = 11)[0m
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 11) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 11)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 11)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 11) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 11)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 11)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 11)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.2ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 11) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 11 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 11)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('audio', 'audio/wav', 'audio.wav', 0, 'Audio', 'audio.wav', '2010-12-16 07:41:30.627460', '2010-12-16 07:41:30.627460')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audio')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (12, 12, 'MediumRelatedTest', '2010-12-16 07:41:30.633608', '2010-12-16 07:41:30.633608')
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 12 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.633608', "updated_at" = '2010-12-16 07:41:30.633608' WHERE ("media_links"."id" = 12)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 12) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audio') LIMIT 1[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 12)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 12)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 12) LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 12)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Audio') AND ("media"."id" = 12)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Audio') AND ("media"."id" = 12)
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 12) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 12 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 12)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 13) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'images')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 13) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 13 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 13)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 14) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audios')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 14) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 14 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 14)[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:30.738088', '2010-12-16 07:41:30.738088')
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (13, 15, 'MediumRelatedTest', '2010-12-16 07:41:30.745169', '2010-12-16 07:41:30.745169')[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 15 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.745169', "updated_at" = '2010-12-16 07:41:30.745169' WHERE ("media_links"."id" = 13)[0m
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 15) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 13)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 13)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 13) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 13)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 13)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 13)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.2ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 15) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 15 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 15)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('audio', 'audio/wav', 'audio.wav', 0, 'Audio', 'audio.wav', '2010-12-16 07:41:30.767793', '2010-12-16 07:41:30.767793')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audio')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (14, 16, 'MediumRelatedTest', '2010-12-16 07:41:30.773954', '2010-12-16 07:41:30.773954')
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 16 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.773954', "updated_at" = '2010-12-16 07:41:30.773954' WHERE ("media_links"."id" = 14)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 16) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audio') LIMIT 1[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 14)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 14)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 14) LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 14)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Audio') AND ("media"."id" = 14)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Audio') AND ("media"."id" = 14)
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 16) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 16 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 16)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 17) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'images')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 17) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 17 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 17)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 18) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'audios')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 18) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 18 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 18)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('images', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:30.829731', '2010-12-16 07:41:30.829731')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('images', 'image/jpeg', 'image_bis.jpg', 0, 'Image', 'image_bis.jpg', '2010-12-16 07:41:30.855363', '2010-12-16 07:41:30.855363')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (15, 19, 'MediumRelatedTest', '2010-12-16 07:41:30.861466', '2010-12-16 07:41:30.861466')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (16, 19, 'MediumRelatedTest', '2010-12-16 07:41:30.862752', '2010-12-16 07:41:30.862752')
+  [1m[36mMediaLink Load (0.2ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 19 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.861466', "updated_at" = '2010-12-16 07:41:30.861466' WHERE ("media_links"."id" = 15)
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.862752', "updated_at" = '2010-12-16 07:41:30.862752' WHERE ("media_links"."id" = 16)[0m
+  [1m[35mMedium Load (0.3ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 15)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 15)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 15) LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 15)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 15)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 15)
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 16)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 16)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 16) LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 16)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 16)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 16)
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 19) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 19 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 19)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image_no_encode', 'image/jpeg', 'image.jpg', 5, 'Image', 'image.jpg', '2010-12-16 07:41:30.961788', '2010-12-16 07:41:30.961788')
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image_no_encode')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (17, 20, 'MediumRelatedTest', '2010-12-16 07:41:30.968912', '2010-12-16 07:41:30.968912')[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 20 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "media_links" SET "created_at" = '2010-12-16 07:41:30.968912', "updated_at" = '2010-12-16 07:41:30.968912' WHERE ("media_links"."id" = 17)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 20) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image_no_encode') LIMIT 1
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image_bis.jpg', 0, 'Image', 'image_bis.jpg', '2010-12-16 07:41:30.995678', '2010-12-16 07:41:30.995678')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 20) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (18, 20, 'MediumRelatedTest', '2010-12-16 07:41:31.000429', '2010-12-16 07:41:31.000429')[0m
+  [1m[35mMedium Load (0.3ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 20) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 17)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 17)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 17) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 17)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 17)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 17)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 18)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 18)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 18) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 18)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 18)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 18)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.2ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 20) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 20 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 20)
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:31.095589', '2010-12-16 07:41:31.095589')[0m
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (19, 21, 'MediumRelatedTest', '2010-12-16 07:41:31.103792', '2010-12-16 07:41:31.103792')
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 21 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:31.103792', "updated_at" = '2010-12-16 07:41:31.103792' WHERE ("media_links"."id" = 19)
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 21) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 19)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 19)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 19) LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 19)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 19)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 19)
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 21) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 21 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 21)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:31.147142', '2010-12-16 07:41:31.147142')
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (20, 22, 'MediumRelatedTest', '2010-12-16 07:41:31.154076', '2010-12-16 07:41:31.154076')[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 22 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "media_links" SET "created_at" = '2010-12-16 07:41:31.154076', "updated_at" = '2010-12-16 07:41:31.154076' WHERE ("media_links"."id" = 20)[0m
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 22) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 20)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 20)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 20) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 20)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 20)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 20)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.2ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 22) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 22 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 22)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:31.198212', '2010-12-16 07:41:31.198212')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (21, 23, 'MediumRelatedTest', '2010-12-16 07:41:31.205198', '2010-12-16 07:41:31.205198')
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 23 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:31.205198', "updated_at" = '2010-12-16 07:41:31.205198' WHERE ("media_links"."id" = 21)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 23) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 21)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 21)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 21) LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 21)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 21)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 21)
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 23) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 23 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 23)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('image', 'image/jpeg', 'image.jpg', 0, 'Image', 'image.jpg', '2010-12-16 07:41:31.294533', '2010-12-16 07:41:31.294533')
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "medium_related_tests" ("name") VALUES (NULL)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (22, 24, 'MediumRelatedTest', '2010-12-16 07:41:31.301559', '2010-12-16 07:41:31.301559')[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 24 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "media_links" SET "created_at" = '2010-12-16 07:41:31.301559', "updated_at" = '2010-12-16 07:41:31.301559' WHERE ("media_links"."id" = 22)[0m
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 24) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'image') LIMIT 1
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 22)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 22)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 22) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 22)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 22)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Image') AND ("media"."id" = 22)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.2ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 24) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 24 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 24)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('pdf', 'application/pdf', 'conversational_capital__explained.pdf', 5, 'Pdf', 'conversational_capital__explained.pdf', '2010-12-16 07:41:31.327187', '2010-12-16 07:41:31.327187')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'pdf')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (23, 25, 'MediumRelatedTest', '2010-12-16 07:41:31.334175', '2010-12-16 07:41:31.334175')
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 25 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:31.334175', "updated_at" = '2010-12-16 07:41:31.334175' WHERE ("media_links"."id" = 23)
+  [1m[36mMedium Load (0.2ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 25) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'pdf') LIMIT 1[0m
+  [1m[35mMedium Load (0.2ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 23)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 23)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 23) LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 23)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Pdf') AND ("media"."id" = 23)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Pdf') AND ("media"."id" = 23)
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 25) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 25 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 25)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.1ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('pdf', 'application/pdf', 'conversational_capital__explained.pdf', 5, 'Pdf', 'conversational_capital__explained.pdf', '2010-12-16 07:41:31.363894', '2010-12-16 07:41:31.363894')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'pdf')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (24, 26, 'MediumRelatedTest', '2010-12-16 07:41:31.370867', '2010-12-16 07:41:31.370867')
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 26 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:31.370867', "updated_at" = '2010-12-16 07:41:31.370867' WHERE ("media_links"."id" = 24)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 26) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'pdf') LIMIT 1[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 24)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media_links" WHERE ("media_links"."id" = 24)
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" WHERE ("media"."id" = 24) LIMIT 1[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 24)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Pdf') AND ("media"."id" = 24)[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Pdf') AND ("media"."id" = 24)
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.2ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 26) AND ("media_links".mediated_type = 'MediumRelatedTest'))[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 26 AND "media_links".mediated_type = 'MediumRelatedTest')
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 26)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.0ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.0ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.1ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.1ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.1ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.1ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.1ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('document', 'application/pdf', 'conversational_capital__explained.pdf', 5, 'Document', 'conversational_capital__explained.pdf', '2010-12-16 07:41:31.450043', '2010-12-16 07:41:31.450043')[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = NULL) AND ("media_links".mediated_type = 'MediumRelatedTest')) AND ("media"."context" = 'document')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "medium_related_tests" ("name") VALUES (NULL)[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (25, 27, 'MediumRelatedTest', '2010-12-16 07:41:31.460087', '2010-12-16 07:41:31.460087')
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 27 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "media_links" SET "created_at" = '2010-12-16 07:41:31.460087', "updated_at" = '2010-12-16 07:41:31.460087' WHERE ("media_links"."id" = 25)
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('document', 'image/jpeg', 'image.jpg', 5, 'Document', 'image.jpg', '2010-12-16 07:41:31.465650', '2010-12-16 07:41:31.465650')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (26, 27, 'MediumRelatedTest', '2010-12-16 07:41:31.468385', '2010-12-16 07:41:31.468385')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "media" ("context", "content_type", "filename", "encode_status", "type", "file", "created_at", "updated_at") VALUES ('document', 'audio/wav', 'audio.wav', 5, 'Document', 'audio.wav', '2010-12-16 07:41:31.472124', '2010-12-16 07:41:31.472124')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "media_links" ("medium_id", "mediated_id", "mediated_type", "created_at", "updated_at") VALUES (27, 27, 'MediumRelatedTest', '2010-12-16 07:41:31.474648', '2010-12-16 07:41:31.474648')
+  [1m[36mMedium Load (0.1ms)[0m  [1mSELECT "media".* FROM "media"[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 25)
+  [1m[36mAREL (0.0ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 25)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 25) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 25)[0m
+  [1m[35mAREL (0.0ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Document') AND ("media"."id" = 25)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Document') AND ("media"."id" = 25)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 26)
+  [1m[36mAREL (0.0ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 26)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 26) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 26)[0m
+  [1m[35mAREL (0.0ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Document') AND ("media"."id" = 26)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Document') AND ("media"."id" = 26)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 27)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media_links" WHERE ("media_links"."id" = 27)[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" WHERE ("media"."id" = 27) LIMIT 1
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".medium_id = 27)[0m
+  [1m[35mAREL (0.0ms)[0m  DELETE FROM "media" WHERE ("media"."type" = 'Document') AND ("media"."id" = 27)
+  [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "media" WHERE ("media"."type" = 'Document') AND ("media"."id" = 27)[0m
+  [1m[35mMediaLink Load (0.1ms)[0m  SELECT "media_links".* FROM "media_links"
+  [1m[36mMediumRelatedTest Load (0.1ms)[0m  [1mSELECT "medium_related_tests".* FROM "medium_related_tests"[0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media" INNER JOIN "media_links" ON "media".id = "media_links".medium_id WHERE (("media_links".mediated_id = 27) AND ("media_links".mediated_type = 'MediumRelatedTest'))
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links" WHERE ("media_links".mediated_id = 27 AND "media_links".mediated_type = 'MediumRelatedTest')[0m
+  [1m[35mAREL (0.1ms)[0m  DELETE FROM "medium_related_tests" WHERE ("medium_related_tests"."id" = 27)
+  [1m[36mSQL (0.1ms)[0m  [1mDROP TABLE "medium_related_tests"[0m
+  [1m[35mSQL (0.1ms)[0m  DROP TABLE "media"
+  [1m[36mSQL (0.1ms)[0m  [1mDROP TABLE "media_links"[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE TABLE "medium_related_tests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) [0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE TABLE "media" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "context" varchar(255), "content_type" varchar(255), "filename" varchar(255), "encode_status" integer, "type" varchar(255), "file" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE TABLE "media_links" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "medium_id" integer, "mediated_id" integer, "mediated_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mMedium Load (0.1ms)[0m  SELECT "media".* FROM "media"
+  [1m[36mMediaLink Load (0.1ms)[0m  [1mSELECT "media_links".* FROM "media_links"[0m
+  [1m[35mMediumRelatedTest Load (0.0ms)[0m  SELECT "medium_related_tests".* FROM "medium_related_tests"
+  [1m[36mSQL (0.1ms)[0m  [1mDROP TABLE "medium_related_tests"[0m
+  [1m[35mSQL (0.1ms)[0m  DROP TABLE "media"
+  [1m[36mSQL (0.1ms)[0m  [1mDROP TABLE "media_links"[0m
