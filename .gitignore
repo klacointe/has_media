@@ -21,3 +21,4 @@ pkg
 ## PROJECT::SPECIFIC
 uploads
 doc
+test/dummy/log/
