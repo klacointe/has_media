@@ -22,20 +22,6 @@ ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__
 # Load support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
-
-#$LOAD_PATH.unshift(File.dirname(__FILE__))
-#$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-#
-#require 'rubygems'
-#require 'rspec'
-#require 'rspec/core'
-#require 'rspec/core/rake_task'
-#
-#require 'action_dispatch'
-#require 'action_dispatch/testing/test_process'
-#
-#require 'has_media'
-
 require 'db_helper'
 require 'temp_file_helper'
 
@@ -49,7 +35,7 @@ RSpec.configure do |config|
   # == Mock Framework
   config.mock_with :rspec
 
-  config.before(:all) do
+  config.before(:suite) do
     TestMigration.up
     # load models and uploaders fixtures
     Dir.glob(File.dirname(__FILE__) + '/fixtures/uploaders/*.rb').each do |uploader|
@@ -60,7 +46,7 @@ RSpec.configure do |config|
     end
   end
 
-  config.after(:all) do
+  config.after(:suite) do
     TestMigration.down
   end
 
@@ -69,6 +55,5 @@ RSpec.configure do |config|
     MediaLink.destroy_all
     MediumRelatedTest.destroy_all
   end
+
 end
-
-

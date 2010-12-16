@@ -27,9 +27,12 @@ class TestMigration < ActiveRecord::Migration
     end
   end
   def self.down
-    drop_table :medium_related_tests
-    drop_table :media
-    drop_table :media_links
+    begin
+      drop_table :media
+      drop_table :media_links
+      drop_table :medium_related_tests
+    rescue  => e
+    end
   end
 end
 
