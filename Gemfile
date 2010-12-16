@@ -7,6 +7,9 @@ group :test do
   gem "rspec", "~>2.3"
   gem "rspec-rails", "~>2.3"
 end
+group :development do
+  gem 'jeweler',  '~>1.5'
+end
 
 gem "carrierwave", "~>0.5"
 gem "activerecord", "~>3.0"
