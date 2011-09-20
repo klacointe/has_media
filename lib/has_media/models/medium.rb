@@ -1,4 +1,6 @@
 class Medium < ActiveRecord::Base
+  require 'digest/sha1'
+
   set_table_name 'media'
 
   has_many   :media_links, :foreign_key => :medium_id, :dependent => :destroy
@@ -111,7 +113,7 @@ class Medium < ActiveRecord::Base
   # encoded_file_name
   # Return the encoded file name for a medium
   # This use the HasMedia.encoded_extensions configuration
-  # 
+  #
   # @param [String] version, the string identifier for a specific encoded version
   # FIXME duplicate with HasMedia::sanitize_file_name
   def encoded_file_name(version = nil)
@@ -123,8 +125,10 @@ class Medium < ActiveRecord::Base
 
   # http uri of directory which stores media
   def directory_uri
+    # sha1 needed to avoid "too many link" error
     File.join(HasMedia.directory_uri,
               ActiveSupport::Inflector.underscore(self.type),
+              self.sha1,
               self.id.to_s)
   end
 
@@ -153,6 +157,17 @@ class Medium < ActiveRecord::Base
       raise Exception.new("You need to add encoded extension configuration for :#{sym}")
     end
     HasMedia.encoded_extensions[sym]
+  end
+
+  ##
+  # sha1
+  # Return the 3 first characters of the sha1(id)
+  # prefixed by "s" to avoid any conflict with existing directories.
+  #
+  # @return [String]
+  #
+  def sha1
+    "s" + Digest::SHA1.hexdigest(self.id.to_s)[0..2]
   end
 
 private
