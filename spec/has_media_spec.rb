@@ -204,8 +204,8 @@ describe "HasMedia" do
       @medium = MediumRelatedTest.new
       @medium.pdf = @pdf
       @medium.save
-      @medium.pdf.filename.should == "conversational_capital__explained.pdf"
-      @medium.pdf.original_file_uri.should == "/media/pdf/#{@medium.pdf.sha1}/#{@medium.pdf.id}/conversational_capital__explained.pdf"
+      @medium.pdf.filename.should == "Conversational_Capital__Explained.pdf"
+      @medium.pdf.original_file_uri.should == "/media/pdf/#{@medium.pdf.sha1}/#{@medium.pdf.id}/Conversational_Capital__Explained.pdf"
     end
   end
 

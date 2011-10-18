@@ -140,7 +140,7 @@ module HasMedia
     name = name.gsub(/[^a-zA-Z0-9\.\-\+_]/,"_")
     name = "_#{name}" if name =~ /\A\.+\z/
     name = "unnamed" if name.size == 0
-    return name.downcase
+    return name
   end
 
 
