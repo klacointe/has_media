@@ -1,4 +1,4 @@
-if (typeof jQuery == 'undefined') {  
+if (typeof jQuery == 'undefined') {
   $("<%= generate_uid(:medium => @medium ) %>").remove();
 } else {
   $("#<%= generate_uid(:medium => @medium ) %>").remove();

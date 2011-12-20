@@ -4,7 +4,7 @@ Media Managment Library for ActiveRecord and Carrierwave
 
 Easy way to link media (ie image, audio, video, pdf, ...) on other activerecords models
 
-Use branch rails2.3 for Rails 2.3.x (gem install has_media -v=v0.1.3) 
+Use branch rails2.3 for Rails 2.3.x (gem install has_media -v=v0.1.3)
 
 Use branch rails3 for Rails 3 (gem install has_media)
 
@@ -38,7 +38,7 @@ Available methods are :
 
 Available options are :
 - only : restrict medium type to link on
-- encode : if false is given, set the encode status of this medium 
+- encode : if false is given, set the encode status of this medium
   to NO_ENCODING instead of ENCODE_WAIT, default to true
 
 Example :
@@ -85,7 +85,7 @@ Configuration take place in config/initializers/has_media.rb
     :video => 'flv'
   }
 
-  # Require you uploaders 
+  # Require you uploaders
   Dir.glob(File.dirname(__FILE__) + '/../app/uploaders/*.rb').each do |uploader|
     require uploader
   end
@@ -142,14 +142,14 @@ file : resque/tasks/encode_my_media.rb
   class EncodeMyMedia
     @queue = :my_media
     include Magick
-  
+
     def self.perform(file)
       img = Image.read(file).first
       img.thumbnail(50, 50).write(file.gsub(/\.[^.]+$/, "") + "_thumb.png")
-    end 
+    end
   end
 
-Then you can manage your media like this : 
+Then you can manage your media like this :
 
   @model = MyModelWithMedia.new
   @model.avatar = File.open("my_file.jpg")
@@ -165,7 +165,7 @@ https://github.com/klacointe/has_media_example
 
 Factory example using factory_girl :
 
-  Factory.define :image, :class => Image do |f| 
+  Factory.define :image, :class => Image do |f|
     f.content_type 'image/jpeg'
     f.filename 'image.jpg'
     f.status 'accepted'

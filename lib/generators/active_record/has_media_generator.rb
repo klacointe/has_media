@@ -2,7 +2,7 @@ require 'rails/generators/active_record'
 
 module ActiveRecord
   module Generators
-    # Cannot inhérit from ActiveRecord::Generators::Base 
+    # Cannot inhérit from ActiveRecord::Generators::Base
     # see http://groups.google.com/group/rubyonrails-talk/browse_thread/thread/a507ce419076cda2
     class HasMediaGenerator < Rails::Generators::Base
       include Rails::Generators::Migration

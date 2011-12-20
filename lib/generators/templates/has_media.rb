@@ -12,7 +12,7 @@ HasMedia.directory_uri = "/media"
 #  "Audio" => ["audio/mp3"]
 #}
 
-# Set the extension of encoded files to use for each medium types 
+# Set the extension of encoded files to use for each medium types
 # This is used in file_uri and file_path
 #HasMedia.encoded_extensions = {
 #  :image => 'png',
