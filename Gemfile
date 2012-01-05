@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "rails", "~>3.0"
+gem "rails", ">3.0"
 group :test do
   gem "capybara", "~>0.4"
   gem "sqlite3-ruby", :require => "sqlite3"
@@ -12,8 +12,8 @@ group :development do
 end
 
 gem "carrierwave", "~>0.5"
-gem "activerecord", "~>3.0"
-gem "activesupport", "~>3.0"
+gem "activerecord", ">3.0"
+gem "activesupport", ">3.0"
 gem "mime-types", "~>1.16"
 gem "rmagick", :require => "RMagick"
 
