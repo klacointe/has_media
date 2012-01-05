@@ -18,6 +18,7 @@ coverage
 rdoc
 pkg
 .bundle
+.rvmrc
 
 ## PROJECT::SPECIFIC
 uploads
