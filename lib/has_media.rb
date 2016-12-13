@@ -46,7 +46,7 @@ module HasMedia
   # Each medium type id representing with its class name and contain an Array
   # of possible mime types. An empty Array means no limitation on mime type
   #
-  # Example : 
+  # Example :
   #  HasMedia.medium_types = {
   #    "Image" => ["image/jpeg", "image/png"],
   #    "Video" => ["video/mp4"],
@@ -140,14 +140,14 @@ module HasMedia
     name = name.gsub(/[^a-zA-Z0-9\.\-\+_]/,"_")
     name = "_#{name}" if name =~ /\A\.+\z/
     name = "unnamed" if name.size == 0
-    return name.downcase
+    return name
   end
 
 
   module ClassMethods
 
     ##
-    # has_one_medium 
+    # has_one_medium
     # Define a class method to link to a medium
     #
     # @param [String] context, the context (or accessor) to link medium
@@ -244,10 +244,10 @@ module HasMedia
         end
       end;
     end
-    
+
     ##
     # set_media_links_relation
-    # Declare media_links relation 
+    # Declare media_links relation
     def set_media_links_relation
       has_many :media_links, :as => :mediated, :dependent => :destroy
     end

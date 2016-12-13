@@ -159,6 +159,7 @@ describe "HasMedia" do
       @medium.save!
       @medium.image.original_file_uri.should == File.join(HasMedia.directory_uri,
                                                           ActiveSupport::Inflector.underscore(@medium.image.type),
+                                                          @medium.image.sha1,
                                                           @medium.image.id.to_s,
                                                           @medium.image.filename)
     end
@@ -166,20 +167,20 @@ describe "HasMedia" do
     it "should define file_uri for custom versions" do
       @medium.image = @image
       @medium.save!
-      @medium.image.file_uri(:thumb).should == "/media/image/#{@medium.image.id}/image_thumb.png"
-      @medium.image.file_path(:thumb).should == "/tmp/image/#{@medium.image.id}/image_thumb.png"
+      @medium.image.file_uri(:thumb).should == "/media/image/#{@medium.image.sha1}/#{@medium.image.id}/image_thumb.png"
+      @medium.image.file_path(:thumb).should == "/tmp/image/#{@medium.image.sha1}/#{@medium.image.id}/image_thumb.png"
     end
 
     it "should define file url for carrierwave versions" do
       @medium.image = @image
       @medium.save!
-      @medium.image.file.thumb.url.should == "/media/image/#{@medium.image.id}/thumb_image.jpg"
+      @medium.image.file.thumb.url.should == "/media/image/#{@medium.image.sha1}/#{@medium.image.id}/thumb_image.jpg"
     end
 
     it "should define file path for carrierwave versions" do
       @medium.image = @image
       @medium.save!
-      @medium.image.file.thumb.path.should == "/tmp/image/#{@medium.image.id}/thumb_image.jpg"
+      @medium.image.file.thumb.path.should == "/tmp/image/#{@medium.image.sha1}/#{@medium.image.id}/thumb_image.jpg"
     end
 
     it "pdf should exist" do
@@ -203,8 +204,8 @@ describe "HasMedia" do
       @medium = MediumRelatedTest.new
       @medium.pdf = @pdf
       @medium.save
-      @medium.pdf.filename.should == "conversational_capital__explained.pdf"
-      @medium.pdf.original_file_uri.should == "/media/pdf/#{@medium.pdf.id}/conversational_capital__explained.pdf"
+      @medium.pdf.filename.should == "Conversational_Capital__Explained.pdf"
+      @medium.pdf.original_file_uri.should == "/media/pdf/#{@medium.pdf.sha1}/#{@medium.pdf.id}/Conversational_Capital__Explained.pdf"
     end
   end
 
